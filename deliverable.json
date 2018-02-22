@@ -1,0 +1,54 @@
+{
+  "entrypoints" : [
+
+    {
+      "name" : "more styling header",
+      "file" : "1.html"
+    }
+,
+    {
+      "name" : "toggle date/time",
+      "file" : "2.html"
+    }
+,
+    {
+      "name" : "making box apear",
+      "file" : "3.html"
+    }
+,
+    {
+      "name" : "box can disappear/has title",
+      "file" : "4.html"
+    }
+,
+    {
+      "name" : "styling box",
+      "file" : "5.html"
+    }
+,
+    {
+      "name" : "filling & styling box with content",
+      "file" : "6.html"
+    }
+,
+    {
+      "name" : "refining box content",
+      "file" : "7.html"
+    }
+,
+    {
+      "name" : "creating about page",
+      "file" : "8.html"
+    }
+,
+    {
+      "name" : "-",
+      "file" : "9.html"
+    }
+,
+    {
+      "name" : "-",
+      "file" : "10.html"
+    }
+  ]
+}

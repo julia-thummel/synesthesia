@@ -1,0 +1,25 @@
+.logo {
+  position: fixed;
+  width: 2%;
+  z-index: 111;
+  padding: .6% 0% 0% 5%;
+}
+
+.menuContainer {
+  position: fixed;
+  left: -25.5%;
+  width: 30%;
+  height: 100%;
+  z-index: 110;
+  background-color: white;
+}
+
+.menuIcon {
+  position: fixed;
+  width: 2.6%;
+  padding: 25% 0% 0% 28.6%;
+}
+
+.menu {
+  position: fixed;
+}
