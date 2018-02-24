@@ -1,31 +1,31 @@
 $(document).ready(function(){
 
 
-  function slideOut() {
-    $(".menuContainer").animate({left: "-25.5%"}, {easing: "swing", queue: false, duration: 10000});
-      if (!$(".menuContainer").hasClass("slideOut")) {
-        $(".menuContainer").addClass("slide");
-      };
-    };
+//Menu Slider
+  jQuery.fn.extend({
+      slideIn: function () {
+        $(this).animate({left: "0%"}, {easing: "swing", queue: false, duration: 100});
+        $(this).removeClass("slide");
+      }
+  });
 
-  function slideIn() {
-    $(".menuContainer").animate({left: "0%"}, {easing: "swing", queue: false, duration: 10000});
-      if (!$(".menuContainer").hasClass("slideOut")) {
-        $(".menuContainer").removeClass("slide");
-      };
-    };
-
-
-
+  jQuery.fn.extend({
+      slideOut: function () {
+        $(this).animate({left: "-26%"}, {easing: "swing", queue: false, duration: 100});
+        $(this).addClass("slide");
+      }
+  });
 
   $(".menuIcon").click(function() {
     if (!$(".menuContainer").hasClass("slide")) {
-      $(".menuContainer").slideOut();
-    };
-    if ((".menuContainer").hasClass("slide")) {
+      $(".menuContainer").slideOut()
+    }
+    else {
       $(".menuContainer").slideIn();
     };
   });
+
+
 
 
 

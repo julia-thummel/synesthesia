@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>test</title>
+	<link rel="stylesheet" type="text/css" href="../css/general.css">
+	<link rel="stylesheet" type="text/css" href="../css/video.css">
+	<link rel="stylesheet" type="text/css" href="../css/menu.css">
+	<link rel="stylesheet" type="text/css" href="../css/jquery.fullPage.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.fullPage.js"></script>
+	<script src="../js/scripts1.js"></script>
+	<!-- <script src="randomColor.js"></script> -->
+  <link href="https://fonts.googleapis.com/css?family=EB+Garamond:400,600,800|Josefin+Sans:300,400,600" rel="stylesheet">
+</head>
+	<body>
+
+		<a href="index.html">
+			<img class="logo" src="../viscomp/logo.svg" alt="home">
+		</a>
+
+		<div class="menuContainer slide">
+			<img class="menuIcon" src="../viscomp/menu.svg" alt="menu">
+			<ul class="menu">
+				<li class="menuItem"><a href="gc.html">sight</a></li>
+				<li class="menuItem"><a href="cm.html">sound</a></li>
+				<li class="menuItem"><a href="ss.html">space</a></li>
+				<li class="menuItem"><a href="at.html">touch</a></li>
+			</ul>
+		</div>
+
+
+		<!-- <div id="fp-nav" class="right">
+			<ul>
+				<li>
+					<a href="#jump1"></a>
+				<li>
+					<a href="#jump2"></a>
+				<li>
+					<a href="#jump3"></a>
+			</ul>
+		</div> -->
+
+
+		<div class="frame topBar">
+		</div>
+		<div class="frame bottomBar">
+		</div>
+		<div class="frame leftBar">
+		</div>
+		<div class="frame rightBar">
+		</div>
+
+		<div id="fullpage">
+
+			<div class="section" id="s1">
+				<div id="jump1"></div>
+				<div class="vidContainer">
+			    <video loop muted data-autoplay>
+			      <source src="../viscomp/test2.mp4" type="video/mp4">
+			    </video>
+				</div>
+			</div>
+
+			<div class="section" id="s2">
+				<div id="jump2"></div>
+				<div class="vidContainer">
+			    <video loop muted data-autoplay>
+			      <source src="../viscomp/test2.mp4" type="video/mp4">
+			    </video>
+				</div>
+			</div>
+
+			<div class="section" id="s3">
+				<div id="jump3"></div>
+				<div class="vidContainer">
+			    <video loop muted data-autoplay>
+			      <source src="../viscomp/test2.mp4" type="video/mp4">
+			    </video>
+				</div>
+			</div>
+
+
+
+
+		</div>
+
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+		$('#fullpage').fullpage();
+		});
+	</script>
+  </body>
+</html>
