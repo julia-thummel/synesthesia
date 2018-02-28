@@ -103,8 +103,8 @@
             //navigation
             menu: false,
             anchors:[],
-            lockAnchors: false,
-            navigation: false,
+            lockAnchors: true,
+            navigation: true,
             navigationPosition: 'right',
             navigationTooltips: [],
             showActiveTooltip: false,
@@ -115,10 +115,10 @@
 
             //scrolling
             css3: true,
-            scrollingSpeed: 700,
+            scrollingSpeed: 1000,
             autoScrolling: true,
             fitToSection: true,
-            fitToSectionDelay: 1000,
+            fitToSectionDelay: 4000,
             easing: 'easeInOutCubic',
             easingcss3: 'ease',
             loopBottom: false,
@@ -149,11 +149,11 @@
             //design
             controlArrows: true,
             controlArrowColor: '#fff',
-            verticalCentered: true,
+            verticalCentered: false,
             sectionsColor : [],
             paddingTop: 0,
             paddingBottom: 0,
-            fixedElements: null,
+            fixedElements: ".fixed",
             responsive: 0, //backwards compabitility with responsiveWiddth
             responsiveWidth: 0,
             responsiveHeight: 0,

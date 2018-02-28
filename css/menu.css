@@ -6,8 +6,9 @@
 }
 
 .menuContainer {
+  font-family: 'Lato', sans-serif;
   position: fixed;
-  left: -26%;
+  left: -27%;
   width: 30%;
   height: 100%;
   z-index: 110;
@@ -17,15 +18,20 @@
 .menuIcon {
   position: fixed;
   width: 2.6%;
-  padding: 25% 0% 0% 28.6%;
+  padding: 25% 0% 0% 29.2%;
 }
 
 .menu {
   position: fixed;
-  text-transform: uppercase;
   padding: 20% 0% 0% 10%;
 }
 
-li {
-  padding-bottom: 45%;
+li.menuItem {
+  margin-bottom: 45%;
+  text-transform: uppercase;
+}
+
+a.menuItem {
+  text-decoration: none;
+  color: black;
 }

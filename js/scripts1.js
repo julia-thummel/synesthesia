@@ -1,6 +1,30 @@
 $(document).ready(function(){
 
 
+  var currentScroll = $(window).scrollTop();
+  var previousDestTop = 0;
+
+  jQuery.fn.extend({
+      getScrollDirection: function (currentScroll) {
+        var lastScroll = 0;
+        var direction = currentScroll > lastScroll ? 'down' : 'up';
+        currentScroll = $(window).scrollTop();
+
+        lastScroll = currentScroll;
+
+        //needed for auto-height sections to determine if we want to scroll to the top or bottom of the destination
+        previousDestTop = currentScroll;
+
+        return direction;
+      }
+  });
+
+  $(window).scroll(function() {
+    var scrollDirection = getScrollDirection(currentScroll);
+    console.log(scrollDirection);
+  });
+
+
 //Menu Slider
   jQuery.fn.extend({
       slideIn: function () {
@@ -11,7 +35,7 @@ $(document).ready(function(){
 
   jQuery.fn.extend({
       slideOut: function () {
-        $(this).animate({left: "-26%"}, {easing: "swing", queue: false, duration: 100});
+        $(this).animate({left: "-27%"}, {easing: "swing", queue: false, duration: 100});
         $(this).addClass("slide");
       }
   });
@@ -24,6 +48,20 @@ $(document).ready(function(){
       $(".menuContainer").slideIn();
     };
   });
+// end
+
+
+// navDots
+if ($(".s1").hasClass("active")) {
+
+};
+
+
+
+
+//end
+
+
 
 
 
