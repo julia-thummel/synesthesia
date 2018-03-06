@@ -115,7 +115,7 @@
 
             //scrolling
             css3: true,
-            scrollingSpeed: 1000,
+            scrollingSpeed: 1500,
             autoScrolling: true,
             fitToSection: true,
             fitToSectionDelay: 4000,
@@ -170,8 +170,53 @@
             slideSelector: SLIDE_DEFAULT_SEL,
 
             //events
-            afterLoad: null,
-            onLeave: null,
+            afterLoad: function(anchorLink, index){
+                      		var loadedSection = $(this);
+
+                      		if(index == 1){
+                      			$(".whiteSpace").removeClass("trans");
+                      		}
+                          if(index == 2){
+                      			$(".whiteSpace").removeClass("trans");
+                      		}
+                          if(index == 3){
+                      			$(".whiteSpace").removeClass("trans");
+                      		}
+                          if(index == 4){
+                      			$(".whiteSpace").removeClass("trans");
+                      		}
+                      	},
+            onLeave: function(index, nextIndex, direction){
+                    		var leavingSection = $(this);
+
+                        if(index == 1 && direction =='down'){
+                    			// alert("Going to section 2!");
+                          $(".whiteSpace").addClass("trans");
+                    		}
+                        //section2
+                        if(index == 2 && direction =='down'){
+                    			// alert("Going to section 3!");
+                          $(".whiteSpace").addClass("trans");
+                    		}
+                        if(index == 2 && direction =='up'){
+                    			// alert("Going to section 1!");
+                          $(".whiteSpace").addClass("trans");
+                    		}
+                        //section3
+                        if(index == 3 && direction =='down'){
+                          // alert("Going to section 4!");
+                          $(".whiteSpace").addClass("trans");
+                        }
+                        if(index == 3 && direction =='up'){
+                          // alert("Going to section 2!");
+                          $(".whiteSpace").addClass("trans");
+                        }
+                        //section4
+                        if(index == 4 && direction =='up'){
+                    			// alert("Going to section 3!");
+                          $(".whiteSpace").addClass("trans");
+                    		}
+                    	},
             afterRender: null,
             afterResize: null,
             afterReBuild: null,

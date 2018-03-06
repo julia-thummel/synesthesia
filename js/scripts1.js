@@ -1,28 +1,31 @@
 $(document).ready(function(){
 
 
-  var currentScroll = $(window).scrollTop();
-  var previousDestTop = 0;
+  // var currentScroll = $(window).scrollTop();
+  // var previousDestTop = 0;
+  //
+  // jQuery.fn.extend({
+  //     getScrollDirection: function (currentScroll) {
+  //       var lastScroll = 0;
+  //       var direction = currentScroll > lastScroll ? 'down' : 'up';
+  //       currentScroll = $(window).scrollTop();
+  //
+  //       lastScroll = currentScroll;
+  //
+  //       //needed for auto-height sections to determine if we want to scroll to the top or bottom of the destination
+  //       previousDestTop = currentScroll;
+  //
+  //       return direction;
+  //     }
+  // });
+  //
+  // $(window).scroll(function() {
+  //   var scrollDirection = getScrollDirection(currentScroll);
+  //   console.log(scrollDirection);
+  // });
 
-  jQuery.fn.extend({
-      getScrollDirection: function (currentScroll) {
-        var lastScroll = 0;
-        var direction = currentScroll > lastScroll ? 'down' : 'up';
-        currentScroll = $(window).scrollTop();
 
-        lastScroll = currentScroll;
 
-        //needed for auto-height sections to determine if we want to scroll to the top or bottom of the destination
-        previousDestTop = currentScroll;
-
-        return direction;
-      }
-  });
-
-  $(window).scroll(function() {
-    var scrollDirection = getScrollDirection(currentScroll);
-    console.log(scrollDirection);
-  });
 
 
 //Menu Slider
@@ -51,21 +54,32 @@ $(document).ready(function(){
 // end
 
 
-// navDots
-if ($(".s1").hasClass("active")) {
 
-};
-
-
-
-
+//assign individual letter id
+$(function(){
+  $('h1').each(function(){
+      var txt = $(this).text();
+      var html = '';
+      for (i in txt){
+          html = html + '<span id='+txt[i]+'>' + txt[i] + '</span>';
+      }
+      // Put the generated HTML back in the document.
+      $(this).html(html);
+    });
+});
 //end
 
 
 
 
-
-
+$(function(){
+  $('#y').hover(function(){
+    $(this).animate({color: "yellow"}, {easing: "swing", queue: false, duration: 100});
+    console.log("hover")
+    }, function(){
+    $(this).css("color", "black");
+  });
+});
 
 
 
