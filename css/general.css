@@ -8,7 +8,6 @@ body {
   width: 100%;
   height: 100%;
   margin: 0;
-  font-family: 'Cormorant Garamond', serif;
 }
 
 .section {
@@ -18,4 +17,117 @@ body {
 
 ul {
   list-style-type: none;
+}
+
+h1 {
+  font-size: 65pt;
+  font-family: 'Cormorant Garamond', serif;
+  color: black;
+}
+
+h3 {
+  font-size: 12pt;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  color: black;
+}
+
+
+
+
+
+
+
+/* --------------------menu-------------------- */
+
+.logo {
+  position: fixed;
+  width: 2%;
+  z-index: 111;
+  padding: .6% 0% 0% 5%;
+}
+
+.menuContainer {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  position: fixed;
+  left: -27%;
+  width: 30%;
+  height: 100%;
+  z-index: 110;
+  background-color: white;
+}
+
+.menuIcon {
+  position: fixed;
+  width: 2.6%;
+  padding: 25% 0% 0% 29.2%;
+}
+
+.menu {
+  position: fixed;
+  padding: 20% 0% 0% 10%;
+}
+
+li.menuItem {
+  margin-bottom: 45%;
+  text-transform: uppercase;
+}
+
+li:hover {
+  text-decoration: underline;
+  font-weight: bolder;
+}
+
+a.menuItem {
+  text-decoration: none;
+  color: black;
+}
+
+
+
+
+
+
+
+/*-----------------frame-------------------*/
+
+.frame {
+  position: fixed;
+  z-index: 100;
+  background-color: white;
+}
+
+.topBar{
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6%;
+}
+
+.bottomBar{
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 6%;
+}
+
+.leftBar {
+  bottom: 0;
+  left: 0;
+  width: 3.5%;
+  height: 100%;
+}
+
+.rightBar{
+  bottom: 0;
+  right: 0;
+  width: 3.5%;
+  height: 100%;
+}
+
+.filler {
+  width: 100%;
+  height: 60px;
+  background-color: white;
 }
