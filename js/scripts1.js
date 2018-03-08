@@ -1,32 +1,6 @@
 $(document).ready(function(){
 
 
-  // var currentScroll = $(window).scrollTop();
-  // var previousDestTop = 0;
-  //
-  // jQuery.fn.extend({
-  //     getScrollDirection: function (currentScroll) {
-  //       var lastScroll = 0;
-  //       var direction = currentScroll > lastScroll ? 'down' : 'up';
-  //       currentScroll = $(window).scrollTop();
-  //
-  //       lastScroll = currentScroll;
-  //
-  //       //needed for auto-height sections to determine if we want to scroll to the top or bottom of the destination
-  //       previousDestTop = currentScroll;
-  //
-  //       return direction;
-  //     }
-  // });
-  //
-  // $(window).scroll(function() {
-  //   var scrollDirection = getScrollDirection(currentScroll);
-  //   console.log(scrollDirection);
-  // });
-
-
-
-
 
 //Menu Slider
   jQuery.fn.extend({
@@ -53,46 +27,73 @@ $(document).ready(function(){
   });
 // end
 
-
+var num = Math.floor(Math.random()*26) + 1;
 
 //assign individual letter id
-$(function(){
-  $('h1').each(function(){
-      var txt = $(this).text();
-      var html = '';
-      for (i in txt){
-          html = html + '<span id='+txt[i]+'>' + txt[i] + '</span>';
-      }
-      // Put the generated HTML back in the document.
-      $(this).html(html);
-    });
-});
+  $(function(){
+    $('h1').each(function(){
+        var txt = $(this).text();
+        var html = '';
+        for (i in txt){
+            html = html + '<span id='+txt[i]+'>' + txt[i] + '</span>';
+        }
+        // Put the generated HTML back in the document.
+        $(this).html(html);
+      });
+  });
 //end
 
 
 
-
-$(function(){
-  $('#y').hover(function(){
-    $(this).animate({color: "yellow"}, {easing: "swing", queue: false, duration: 100});
-    console.log("hover")
+//assign individual letter color
+  $("h1").hover(function(){
+      $(this).children("#S").animate({color: "#107f17"}, {easing: "swing", queue: false, duration: 100});
+      $(this).children("#y").animate({color: "#d1e519"}, {easing: "swing", queue: false, duration: 100});
+      $(this).children("#n").animate({color: "#04541e"}, {easing: "swing", queue: false, duration: 100});
+      $(this).children("#e").animate({color: "#efea4a"}, {easing: "swing", queue: false, duration: 100});
+      $(this).children("#s").animate({color: "#107f17"}, {easing: "swing", queue: false, duration: 100});
+      $(this).children("#t").animate({color: "#175e51"}, {easing: "swing", queue: false, duration: 100});
+      $(this).children("#h").animate({color: "#f9eba2"}, {easing: "swing", queue: false, duration: 100});
+      $(this).children("#i").animate({color: "#9fc9f9"}, {easing: "swing", queue: false, duration: 100});
+      $(this).children("#a").animate({color: "#236ec4"}, {easing: "swing", queue: false, duration: 100});
     }, function(){
-    $(this).css("color", "black");
+      $(this).children("#S").animate({color: "black"}, {easing: "swing", queue: false, duration: 100});
+      $(this).children("#y").animate({color: "black"}, {easing: "swing", queue: false, duration: 100});
+      $(this).children("#n").animate({color: "black"}, {easing: "swing", queue: false, duration: 100});
+      $(this).children("#e").animate({color: "black"}, {easing: "swing", queue: false, duration: 100});
+      $(this).children("#s").animate({color: "black"}, {easing: "swing", queue: false, duration: 100});
+      $(this).children("#t").animate({color: "black"}, {easing: "swing", queue: false, duration: 100});
+      $(this).children("#h").animate({color: "black"}, {easing: "swing", queue: false, duration: 100});
+      $(this).children("#i").animate({color: "black"}, {easing: "swing", queue: false, duration: 100});
+      $(this).children("#a").animate({color: "black"}, {easing: "swing", queue: false, duration: 100});
   });
+//end
+
+
+
+// set height to window height
+jQuery.fn.extend({
+    setHeight: function () {
+      var height = window.innerHeight;
+      $(this).css("height", height);
+    }
 });
 
+$("#introduction").setHeight();
+$("#interaction1").setHeight();
+$("#interaction2").setHeight();
+//end
 
 
-  // //scroll circle 1
-  //   $(".arrow").find("a").click(function(e) {
-  //       e.preventDefault();
-  //       var section = $(this).attr("href");
-  //       $("html, body").animate({
-  //           scrollTop: $(section).offset().top
-  //       });
-  //   });
 
-
+// button hover
+$('button').hover(function(){
+    console.log("hover");
+    $(this).css({"background-color":"white", "color":"#a5a5a5"});
+    }, function(){
+    $(this).css({"background-color":"transparent", "color":"white"});
+});
+// end
 
 
 

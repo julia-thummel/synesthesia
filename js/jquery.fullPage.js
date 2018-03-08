@@ -174,16 +174,20 @@
                       		var loadedSection = $(this);
 
                       		if(index == 1){
-                      			$(".whiteSpace").removeClass("trans");
+                      			$(".whiteSpace").removeClass("transUp");
+                            $(".whiteSpace").removeClass("transDown");
                       		}
                           if(index == 2){
-                      			$(".whiteSpace").removeClass("trans");
+                      			$(".whiteSpace").removeClass("transUp");
+                            $(".whiteSpace").removeClass("transDown");
                       		}
                           if(index == 3){
-                      			$(".whiteSpace").removeClass("trans");
+                      			$(".whiteSpace").removeClass("transUp");
+                            $(".whiteSpace").removeClass("transDown");
                       		}
                           if(index == 4){
-                      			$(".whiteSpace").removeClass("trans");
+                      			$(".whiteSpace").removeClass("transUp");
+                            $(".whiteSpace").removeClass("transDown");
                       		}
                       	},
             onLeave: function(index, nextIndex, direction){
@@ -191,30 +195,30 @@
 
                         if(index == 1 && direction =='down'){
                     			// alert("Going to section 2!");
-                          $(".whiteSpace").addClass("trans");
+                          $(".whiteSpace").addClass("transDown");
                     		}
                         //section2
                         if(index == 2 && direction =='down'){
                     			// alert("Going to section 3!");
-                          $(".whiteSpace").addClass("trans");
+                          $(".whiteSpace").addClass("transDown");
                     		}
                         if(index == 2 && direction =='up'){
                     			// alert("Going to section 1!");
-                          $(".whiteSpace").addClass("trans");
+                          $(".whiteSpace").addClass("transUp");
                     		}
                         //section3
                         if(index == 3 && direction =='down'){
                           // alert("Going to section 4!");
-                          $(".whiteSpace").addClass("trans");
+                          $(".whiteSpace").addClass("transDown");
                         }
                         if(index == 3 && direction =='up'){
                           // alert("Going to section 2!");
-                          $(".whiteSpace").addClass("trans");
+                          $(".whiteSpace").addClass("transUp");
                         }
                         //section4
                         if(index == 4 && direction =='up'){
                     			// alert("Going to section 3!");
-                          $(".whiteSpace").addClass("trans");
+                          $(".whiteSpace").addClass("transUp");
                     		}
                     	},
             afterRender: null,
