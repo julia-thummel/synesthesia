@@ -1,41 +1,54 @@
 .whiteSpace {
-  width: 100%;
+  width: 97%;
   height: 100%;
   background-color: white;
   position: fixed;
+  left: 0;
   z-index: -10;
   top: 100%;
 }
 
-.trans {
-  animation-name: trans;
-  animation-duration: 1s;
+.transUp {
+  animation-name: transUp;
+  animation-duration: 1.5s;
   animation-timing-function: cubic-bezier();
 }
 
-@keyframes trans {
+.transDown {
+  animation-name: transDown;
+  animation-duration: 1.5s;
+  animation-timing-function: cubic-bezier();
+}
+
+@keyframes transUp {
+    0%   {top: -100%; z-index: -10;}
+    30%  {top: 0%; z-index: 109;}
+    100% {top: 100%; z-index: -10;}
+}
+
+@keyframes transDown {
     0%   {top: 100%; z-index: -10;}
-    50%  {top: 0%; z-index: 109;}
+    30%  {top: 0%; z-index: 109;}
     100% {top: -100%; z-index: -10;}
 }
 
 .section1Title {
-  width: 50%;
+  width: 27%;
   height: 50%;
   position: absolute;
   display: block;
   top: 25%;
-  left: 20%;
-  z-index: 100;
+  left: 15%;
+  z-index: 120;
 }
 
 .section1Text {
-  width: 50%;
+  width: 37%;
   height: 50%;
   position: absolute;
   display: block;
   top: 55%;
-  left: 60%;
+  left: 48%;
 }
 
 .section2Title {

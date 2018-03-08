@@ -25,11 +25,41 @@ h1 {
   color: black;
 }
 
-h3 {
-  font-size: 12pt;
-  font-family: 'Lato', sans-serif;
-  font-weight: 300;
+h2 { /* home pages after initial */
+  font-size: 45pt;
+  font-family: 'Cormorant Garamond', serif;
   color: black;
+}
+
+h3 { /* page titles */
+  margin: 0;
+  font-size: 12pt;
+  font-family: 'Cormorant Garamond', serif;
+  color: black;
+  mix-blend-mode: difference;
+}
+
+h4 { /* section titles */
+  margin: 0;
+  display: inline-block;
+  font-size: 8pt;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: black;
+  mix-blend-mode: difference;
+}
+
+h5 {
+  font-size: 20pt;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  color: black;
+}
+
+p {
+  font-size: 10pt;
+  font-family: 'Lato', sans-serif;
 }
 
 
