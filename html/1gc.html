@@ -5,7 +5,7 @@
 	<link rel="stylesheet" type="text/css" href="../css/video.css">
 	<link rel="stylesheet" type="text/css" href="../css/gc.css">
 	<link rel="stylesheet" type="text/css" href="../css/general.css">
-	<link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:700|Lato:300,400" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:400,600i,700|Lato:300,400,900" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="../js/jquery.color.min.js"></script>
 	<script src="../three.js-dev/build/three.min.js"></script>
@@ -15,23 +15,21 @@
 
 	<body>
 
-    <div id="introduction">
-
     <!-- logo -->
     		<a class="logo" href="index.html">
-    			<img src="../viscomp/logo.svg" alt="home">
+    			<img class ="remain" src="../viscomp/logo.svg" alt="home">
     		</a>
     <!--  -->
 
 		<!-- lables -->
-		<div class="labelContainer">
+		<div class="remain labelContainer">
 			<div class="pageName">
 				<h3>Grapheme-Color</h3>
 			</div>
 			<div class="sectionName">
-				<h4 class= "sn">introduction</h4>
-				<h4 class= "sn">letter + color</h4>
-				<h4 class= "sn">word + color</h4>
+				<h4 class= "one sn">introduction</h4>
+				<h4 class= "two sn">letter + color</h4>
+				<h4 class= "three sn">word + color</h4>
 			</div>
 		</div>
 		<!--  -->
@@ -59,6 +57,9 @@
     		</div>
     <!--  -->
 
+
+<div id="introduction">
+
 		<!-- title -->
 			<div class="introContent">
 				<div class="introTitle">
@@ -74,31 +75,28 @@
 		<!--  -->
 
 		<!-- buttons -->
-			<div class="button">
-				<button class="down">continue</button>
+			<div>
+				<button class="button continue">continue</button>
 			</div>
 
-			<div class="button">
-				<button class="left"><img class="LArrow" src="../viscomp/arrow.svg">auditory-tactile</button>
+			<div>
+				<a href="4at.html">
+					<button class="button left"><img class="LArrow" src="../viscomp/arrow.svg">touch</button>
+				</a>
 			</div>
 
-			<div class="button">
-				<button class="right"><img class="RArrow" src="../viscomp/arrow.svg">chromosthesia</button>
+			<div>
+				<a href="2cm.html">
+					<button class="button right"><img class="RArrow" src="../viscomp/arrow.svg">sound</button>
+				</a>
 			</div>
 		<!--  -->
-
-
-		<!-- background video -->
-		<div class="vidContainer">
-			<video loop muted autoplay>
-				<source src="../viscomp/mov1.mp4" type="video/mp4">
-			</video>
-		</div>
-		<!--  -->
-
 
   </div>
 
+
+	<div class="blackSquare">
+	</div>
 
 
 	<div id="interaction1">
