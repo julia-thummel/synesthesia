@@ -89,11 +89,54 @@ $("#interaction2").setHeight();
 // button hover
 $('button').hover(function(){
     console.log("hover");
-    $(this).css({"background-color":"white", "color":"#a5a5a5"});
+    $(this).animate({"background-color":"white", "color":"#a5a5a5"}, {easing: "swing", queue: false, duration: 300});
     }, function(){
-    $(this).css({"background-color":"transparent", "color":"white"});
+    $(this).animate({"background-color":"transparent", "color":"white"}, {easing: "swing", queue: false, duration: 300});
 });
 // end
+
+
+
+// set active section
+$(".sectionName").find(".one").addClass("active");
+
+$(".one").click(function(){
+  $(".sectionName").find(".sn").removeClass("active");
+  $(".sectionName").find(".one").addClass("active");
+});
+
+$(".two").click(function(){
+  $(".sectionName").find(".sn").removeClass("active");
+  $(".sectionName").find(".two").addClass("active");
+});
+
+$(".three").click(function(){
+  $(".sectionName").find(".sn").removeClass("active");
+  $(".sectionName").find(".three").addClass("active");
+});
+// end
+
+
+// continue button
+$(".continue").click(function(){
+  $(".sectionName").find(".one").removeClass("active");
+  $(".sectionName").find(".two").addClass("active");
+  $(".blackSquare").delay(1200).animate({
+    top: "0%",
+    left: "0%",
+    width: "100%",
+    height: "100%"},
+    {easing: "swing", queue: true, duration: 800});
+  $(".introContent").delay(300).animate({opacity: 0,}, {queue: true, duration: 300});
+  $(".button").delay(300).animate({opacity: 0,}, {queue: true, duration: 300});
+  $("#introduction").delay(2000).queue(function (next) {
+    $(this).hide();
+    next();
+  });
+  $(".remain").css({"z-index": "125", "color": "white"});
+});
+
+//end
 
 
 
