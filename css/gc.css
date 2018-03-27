@@ -1,6 +1,7 @@
 #introduction {
   width: 100%;
   display: block;
+  background: linear-gradient(to bottom right, #8cf2b8, #60cfe0);
 }
 
 #interaction1 {
@@ -38,15 +39,18 @@
   position: fixed;
   display: inline-block;
   margin: 0;
-  top: 55%;
-  left: 79%;
+  top: 2%;
+  left: 70%;
   width: 35%;
   height: 10%;
-  transform: rotate(90deg);
 }
 
 .sn {
   margin: 0 0 0 5%;
+}
+
+.active {
+  font-weight: 900;
 }
 
 .introContent {
@@ -65,7 +69,7 @@
 
 }
 
-button {
+.button {
   width: 10%;
   height: 5%;
   background-color: transparent;
@@ -78,7 +82,7 @@ button {
   z-index: 120;
 }
 
-.down {
+.continue {
   left: 45%;
   top: 80%;
 }
@@ -107,4 +111,14 @@ button {
   top: 20.5%;
   width: 2%;
   transform: rotate(-90deg);
+}
+
+.blackSquare {
+  width: 0%;
+  height: 0%;
+  z-index: 120;
+  background-color: #201f1f;
+  position: fixed;
+  top: 50%;
+  left: 50%;
 }

@@ -8,11 +8,17 @@ body {
   width: 100%;
   height: 100%;
   margin: 0;
+  background-color: white;
 }
 
 .section {
   width: 100%;
   height: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
 ul {
@@ -22,21 +28,20 @@ ul {
 h1 {
   font-size: 65pt;
   font-family: 'Cormorant Garamond', serif;
-  color: black;
+  color: inherit;
 }
 
 h2 { /* home pages after initial */
-  font-size: 45pt;
+  font-size: 40pt;
   font-family: 'Cormorant Garamond', serif;
-  color: black;
+  color: inherit;
 }
 
 h3 { /* page titles */
   margin: 0;
   font-size: 12pt;
   font-family: 'Cormorant Garamond', serif;
-  color: black;
-  mix-blend-mode: difference;
+  color: inherit;
 }
 
 h4 { /* section titles */
@@ -44,22 +49,22 @@ h4 { /* section titles */
   display: inline-block;
   font-size: 8pt;
   font-family: 'Lato', sans-serif;
-  font-weight: 400;
+  font-weight: 300;
   text-transform: uppercase;
-  color: black;
-  mix-blend-mode: difference;
+  color: inherit;
 }
 
-h5 {
-  font-size: 20pt;
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 400;
+h5 { /* home page intro */
+  font-size: 16pt;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
   color: black;
 }
 
 p {
   font-size: 10pt;
   font-family: 'Lato', sans-serif;
+  font-weight: 300;
 }
 
 
@@ -105,8 +110,7 @@ li.menuItem {
 }
 
 li:hover {
-  text-decoration: underline;
-  font-weight: bolder;
+  text-decoration: line-through;
 }
 
 a.menuItem {

@@ -8,6 +8,7 @@ body {
 #introduction {
   width: 100%;
   display: block;
+  background: linear-gradient(to bottom right, #8cf2b8, #60cfe0);
 }
 
 #interaction1 {
