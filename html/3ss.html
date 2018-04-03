@@ -4,14 +4,15 @@
 		<title>ss</title>
 		<link rel="stylesheet" type="text/css" href="../css/general.css">
 		<link rel="stylesheet" type="text/css" href="../css/ss.css">
+		<link rel="stylesheet" type="text/css" href="../css/subpage.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<script src="../three.js-dev/build/three.js"></script>
+		<!-- <script src="../three.js-dev/build/three.js"></script>
 		<script src="../three.js-dev/examples/js/renderers/Projector.js"></script>
 		<script src="../three.js-dev/examples/js/renderers/CanvasRenderer.js"></script>
 		<script src="../three.js-dev/examples/js/libs/stats.min.js"></script>
-		<script src="../three.js-dev/examples/js/libs/tween.min.js"></script>
+		<script src="../three.js-dev/examples/js/libs/tween.min.js"></script> -->
 		<script src="../js/scripts1.js"></script>
-		<link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:700|Lato:300,400" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:400,600i,700|Lato:300,400,900" rel="stylesheet">
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	</head>
@@ -19,23 +20,26 @@
 
 	<body>
 
+
 		<!-- logo -->
-				<a class="logo" href="index.html">
-					<img src="../viscomp/logo.svg" alt="home">
+				<a class="remain logo" href="index.html">
+					<img class ="remain" src="../viscomp/logo.svg" alt="home">
 				</a>
 		<!--  -->
 
 		<!-- lables -->
-		<div class="labelContainer">
+		<div class="remain labelContainer">
 			<div class="pageName">
 				<h3>Spatial-Sequence</h3>
 			</div>
 			<div class="sectionName">
-				<h4 class= "sn">introduction</h4>
-				<h4 class= "sn">sequencing</h4>
+				<h4 class= "one sn">introduction</h4>
+				<h4 class= "two sn">sequencing</h4>
 			</div>
 		</div>
 		<!--  -->
+
+		<div class="mainFrame">
 
 		<!-- menu -->
 				<div class="menuContainer slide">
@@ -60,35 +64,39 @@
 				</div>
 		<!--  -->
 
+		</div>
+
+
 		<div id="introduction">
 
+
 		<!-- title -->
-			<div class="introContent">
-				<div class="introTitle">
-					<h2>Spatial-Sequence Synesthesia</h2>
-				</div>
-				<div class="introParagraph">
-					<p>seeing sequences, such as months in the year, days of the week, or simple sequences of numbers,
-						as having a specific place in space. These sequences can take many forms;
-						for example, some report seeing time as a large clock around them.</p>
-				</div>
+		<div class="introContent">
+			<h4 class="subHead">space</h4>
+			<img class="subheadLine" src="../viscomp/subheadLine.svg">
+			<h2 class="introTitle">Spatial-Sequence Synesthesia</h2>
+			<div class="introParagraph">
+				<p>seeing sequences, such as months in the year, days of the week, or simple sequences of numbers,
+					as having a specific place in space. These sequences can take many forms;
+					for example, some report seeing time as a large clock around them.</p>
 			</div>
+		</div>
 		<!--  -->
 
 		<!-- buttons -->
-			<div class="button">
-				<button class="down">continue</button>
+			<div>
+				<button class="continue"><img class="continueIcon" src="../viscomp/continue.svg">continue</button>
 			</div>
 
-			<div class="button">
+			<div>
 				<a href="2cm.html">
-					<button class="left"><img class="LArrow" src="../viscomp/arrow.svg">sound</button>
+					<button class="button left"><img class="LArrow" src="../viscomp/arrow.svg">sound</button>
 				</a>
 			</div>
 
-			<div class="button">
+			<div>
 				<a href="4at.html">
-					<button class="right"><img class="RArrow" src="../viscomp/arrow.svg">touch</button>
+					<button class="button right"><img class="RArrow" src="../viscomp/arrow.svg">touch</button>
 				</a>
 			</div>
 		<!--  -->
@@ -97,163 +105,321 @@
 		</div>
 
 
+		<div class="blackSquare">
+		</div>
+
+
+		<!-- <div id="interaction1"> -->
+			<div>
+				<button class="back">back</button>
+			</div>
+		<!-- </div> -->
+
+
+
+		<script src="../three.js/build/three.js"></script>
+		<script src="../three.js/examples/js/utils/GeometryUtils.js"></script>
+
+		<script src="../three.js/examples/js/Detector.js"></script>
+		<script src="../three.js/examples/js/libs/stats.min.js"></script>
+
 
 		<script>
 
-			var container, stats;
-			var camera, scene, renderer;
-
-			var raycaster;
-			var mouse;
-
+			if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
+			THREE.Cache.enabled = true;
+			var container, stats, permalink, hex, color;
+			var camera, cameraTarget, scene, renderer;
+			var group, textMesh1, textMesh2, textGeo, materials;
+			var firstLetter = true;
+			var text = "sequencing",
+				height = 20,
+				size = 70,
+				hover = 30,
+				curveSegments = 4,
+				bevelThickness = 2,
+				bevelSize = 1.5,
+				bevelSegments = 3,
+				bevelEnabled = true,
+				font = undefined,
+				fontName = "helvetiker", // helvetiker, optimer, gentilis, droid sans, droid serif
+				fontWeight = "regular"; // normal bold
+			var mirror = false;
+			var fontMap = {
+				"helvetiker": 0,
+				"optimer": 1,
+				"gentilis": 2,
+				"droid/droid_sans": 3,
+				"droid/droid_serif": 4
+			};
+			var weightMap = {
+				"regular": 0,
+				"bold": 1
+			};
+			var reverseFontMap = [];
+			var reverseWeightMap = [];
+			for ( var i in fontMap ) reverseFontMap[ fontMap[i] ] = i;
+			for ( var i in weightMap ) reverseWeightMap[ weightMap[i] ] = i;
+			var targetRotation = 0;
+			var targetRotationOnMouseDown = 0;
+			var mouseX = 0;
+			var mouseXOnMouseDown = 0;
+			var windowHalfX = window.innerWidth / 2;
+			var windowHalfY = window.innerHeight / 2;
+			var fontIndex = 1;
 			init();
 			animate();
-
+			function decimalToHex( d ) {
+				var hex = Number( d ).toString( 16 );
+				hex = "000000".substr( 0, 6 - hex.length ) + hex;
+				return hex.toUpperCase();
+			}
 			function init() {
-
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
-
-				// var info = document.createElement( 'div' );
-				// info.style.position = 'absolute';
-				// info.style.top = '10px';
-				// info.style.width = '100%';
-				// info.style.textAlign = 'center';
-				// info.innerHTML = '<a href="http://threejs.org" target="_blank" rel="noopener">three.js</a> - clickable objects';
-				// container.appendChild( info );
-
-				camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 10000 );
-				camera.position.y = 300;
-				camera.position.z = 500;
-
+				// CAMERA
+				camera = new THREE.PerspectiveCamera( 30, window.innerWidth / window.innerHeight, 1, 1500 );
+				camera.position.set( 0, 400, 700 );
+				cameraTarget = new THREE.Vector3( 0, 150, 0 );
+				// SCENE
 				scene = new THREE.Scene();
-				scene.background = new THREE.Color( 0x201f1f );
-
-				var geometry = new THREE.BoxGeometry( 100, 100, 100 );
-
-				for ( var i = 0; i < 20; i ++ ) {
-
-					var object = new THREE.Mesh( geometry, new THREE.MeshBasicMaterial( { color: 0xffffff, opacity: 0.5 } ) );
-					object.position.x = Math.random() * 800 - 400;
-					object.position.y = Math.random() * 800 - 400;
-					object.position.z = Math.random() * 800 - 400;
-					object.scale.x = Math.random() * 2 + 1;
-					object.scale.y = Math.random() * 2 + 1;
-					object.scale.z = Math.random() * 2 + 1;
-					object.rotation.x = Math.random() * 2 * Math.PI;
-					object.rotation.y = Math.random() * 2 * Math.PI;
-					object.rotation.z = Math.random() * 2 * Math.PI;
-					scene.add( object );
-
+				scene.background = new THREE.Color( 0x000000 );
+				scene.fog = new THREE.Fog( 0x000000, 250, 1400 );
+				// LIGHTS
+				var dirLight = new THREE.DirectionalLight( 0xffffff, 0.125 );
+				dirLight.position.set( 0, 0, 1 ).normalize();
+				scene.add( dirLight );
+				var pointLight = new THREE.PointLight( 0xffffff, 1.5 );
+				pointLight.position.set( 0, 100, 90 );
+				scene.add( pointLight );
+				// Get text from hash
+				var hash = document.location.hash.substr( 1 );
+				if ( hash.length !== 0 ) {
+					var colorhash  = hash.substring( 0, 6 );
+					var fonthash   = hash.substring( 6, 7 );
+					var weighthash = hash.substring( 7, 8 );
+					var bevelhash  = hash.substring( 8, 9 );
+					// var texthash   = hash.substring( 10 );
+					hex = colorhash;
+					pointLight.color.setHex( parseInt( colorhash, 16 ) );
+					fontName = reverseFontMap[ parseInt( fonthash ) ];
+					fontWeight = reverseWeightMap[ parseInt( weighthash ) ];
+					bevelEnabled = parseInt( bevelhash );
+					// text = decodeURI( texthash );
+				} else {
+					pointLight.color.setHSL( Math.random(), 1, 0.5 );
+					hex = decimalToHex( pointLight.color.getHex() );
 				}
-
-				//
-
-				raycaster = new THREE.Raycaster();
-				mouse = new THREE.Vector2();
-
-				renderer = new THREE.CanvasRenderer();
+				materials = [
+					new THREE.MeshPhongMaterial( { color: 0xffffff, flatShading: true } ), // front
+					new THREE.MeshPhongMaterial( { color: 0xffffff } ) // side
+				];
+				group = new THREE.Group();
+				group.position.y = 100;
+				scene.add( group );
+				loadFont();
+				var plane = new THREE.Mesh(
+					new THREE.PlaneBufferGeometry( 10000, 10000 ),
+					new THREE.MeshBasicMaterial( { color: 0xffffff, opacity: 0.5, transparent: true } )
+				);
+				plane.position.y = 100;
+				plane.rotation.x = - Math.PI / 2;
+				scene.add( plane );
+				// RENDERER
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
-				container.appendChild(renderer.domElement);
-
+				container.appendChild( renderer.domElement );
+				// STATS
 				stats = new Stats();
-				// container.appendChild( stats.dom );
-
+				//container.appendChild( stats.dom );
+				// EVENTS
 				document.addEventListener( 'mousedown', onDocumentMouseDown, false );
 				document.addEventListener( 'touchstart', onDocumentTouchStart, false );
-
+				document.addEventListener( 'touchmove', onDocumentTouchMove, false );
+				document.addEventListener( 'keypress', onDocumentKeyPress, false );
+				document.addEventListener( 'keydown', onDocumentKeyDown, false );
+				// document.getElementById( "color" ).addEventListener( 'click', function() {
+				// 	pointLight.color.setHSL( Math.random(), 1, 0.5 );
+				// 	hex = decimalToHex( pointLight.color.getHex() );
+				// 	updatePermalink();
+				// }, false );
+				// document.getElementById( "font" ).addEventListener( 'click', function() {
+				// 	fontIndex ++;
+				// 	fontName = reverseFontMap[ fontIndex % reverseFontMap.length ];
+				// 	loadFont();
+				// }, false );
+				// document.getElementById( "weight" ).addEventListener( 'click', function() {
+				// 	if ( fontWeight === "bold" ) {
+				// 		fontWeight = "regular";
+				// 	} else {
+				// 		fontWeight = "bold";
+				// 	}
+				// 	loadFont();
+				// }, false );
+				// document.getElementById( "bevel" ).addEventListener( 'click', function() {
+				// 	bevelEnabled = !bevelEnabled;
+				// 	refreshText();
+				// }, false );
 				//
-
 				window.addEventListener( 'resize', onWindowResize, false );
-
 			}
-
 			function onWindowResize() {
-
+				windowHalfX = window.innerWidth / 2;
+				windowHalfY = window.innerHeight / 2;
 				camera.aspect = window.innerWidth / window.innerHeight;
 				camera.updateProjectionMatrix();
-
 				renderer.setSize( window.innerWidth, window.innerHeight );
-
 			}
-
-			function onDocumentTouchStart( event ) {
-
-				event.preventDefault();
-
-				event.clientX = event.touches[0].clientX;
-				event.clientY = event.touches[0].clientY;
-				onDocumentMouseDown( event );
-
-			}
-
-			function onDocumentMouseDown( event ) {
-
-				event.preventDefault();
-
-				mouse.x = ( event.clientX / renderer.domElement.clientWidth ) * 2 - 1;
-				mouse.y = - ( event.clientY / renderer.domElement.clientHeight ) * 2 + 1;
-
-				raycaster.setFromCamera( mouse, camera );
-
-				var intersects = raycaster.intersectObjects( scene.children );
-
-				if ( intersects.length > 0 ) {
-
-					new TWEEN.Tween( intersects[ 0 ].object.position ).to( {
-						x: Math.random() * 800 - 400,
-						y: Math.random() * 800 - 400,
-						z: Math.random() * 800 - 400 }, 2000 )
-					.easing( TWEEN.Easing.Elastic.Out).start();
-
-					new TWEEN.Tween( intersects[ 0 ].object.rotation ).to( {
-						x: Math.random() * 2 * Math.PI,
-						y: Math.random() * 2 * Math.PI,
-						z: Math.random() * 2 * Math.PI }, 2000 )
-					.easing( TWEEN.Easing.Elastic.Out).start();
-
-				}
-
-				/*
-				// Parse all the faces
-				for ( var i in intersects ) {
-
-					intersects[ i ].face.material[ 0 ].color.setHex( Math.random() * 0xffffff | 0x80000000 );
-
-				}
-				*/
-			}
-
 			//
-
+			function boolToNum( b ) {
+				return b ? 1 : 0;
+			}
+			// function updatePermalink() {
+			// 	var link = hex + fontMap[ fontName ] + weightMap[ fontWeight ] + boolToNum( bevelEnabled ) + "#" + encodeURI( text );
+			// 	permalink.href = "#" + link;
+			// 	window.location.hash = link;
+			// }
+			function onDocumentKeyDown( event ) {
+				if ( firstLetter ) {
+					firstLetter = false;
+					text = "";
+				}
+				var keyCode = event.keyCode;
+				// backspace
+				if ( keyCode == 8 ) {
+					event.preventDefault();
+					text = text.substring( 0, text.length - 1 );
+					refreshText();
+					return false;
+				}
+			}
+			function onDocumentKeyPress( event ) {
+				var keyCode = event.which;
+				// backspace
+				if ( keyCode == 8 ) {
+					event.preventDefault();
+				} else {
+					var ch = String.fromCharCode( keyCode );
+					text += ch;
+					refreshText();
+				}
+			}
+			function loadFont() {
+				var loader = new THREE.FontLoader();
+				loader.load( '../three.js/examples/fonts/helvetiker_regular.typeface.json', function ( response ) {
+					font = response;
+					refreshText();
+				} );
+			}
+			function createText() {
+				textGeo = new THREE.TextGeometry( text, {
+					font: font,
+					size: size,
+					height: height,
+					curveSegments: curveSegments,
+					bevelThickness: bevelThickness,
+					bevelSize: bevelSize,
+					bevelEnabled: bevelEnabled
+				});
+				textGeo.computeBoundingBox();
+				textGeo.computeVertexNormals();
+				// "fix" side normals by removing z-component of normals for side faces
+				// (this doesn't work well for beveled geometry as then we lose nice curvature around z-axis)
+				if ( ! bevelEnabled ) {
+					var triangleAreaHeuristics = 0.1 * ( height * size );
+					for ( var i = 0; i < textGeo.faces.length; i ++ ) {
+						var face = textGeo.faces[ i ];
+						if ( face.materialIndex == 1 ) {
+							for ( var j = 0; j < face.vertexNormals.length; j ++ ) {
+								face.vertexNormals[ j ].z = 0;
+								face.vertexNormals[ j ].normalize();
+							}
+							var va = textGeo.vertices[ face.a ];
+							var vb = textGeo.vertices[ face.b ];
+							var vc = textGeo.vertices[ face.c ];
+							var s = THREE.GeometryUtils.triangleArea( va, vb, vc );
+							if ( s > triangleAreaHeuristics ) {
+								for ( var j = 0; j < face.vertexNormals.length; j ++ ) {
+									face.vertexNormals[ j ].copy( face.normal );
+								}
+							}
+						}
+					}
+				}
+				var centerOffset = -0.5 * ( textGeo.boundingBox.max.x - textGeo.boundingBox.min.x );
+				textMesh1 = new THREE.Mesh( textGeo, materials );
+				textMesh1.position.x = centerOffset;
+				textMesh1.position.y = hover;
+				textMesh1.position.z = 0;
+				textMesh1.rotation.x = 0;
+				textMesh1.rotation.y = Math.PI * 2;
+				group.add( textMesh1 );
+				if ( mirror ) {
+					textMesh2 = new THREE.Mesh( textGeo, materials );
+					textMesh2.position.x = centerOffset;
+					textMesh2.position.y = -hover;
+					textMesh2.position.z = height;
+					textMesh2.rotation.x = Math.PI;
+					textMesh2.rotation.y = Math.PI * 2;
+					group.add( textMesh2 );
+				}
+			}
+			function refreshText() {
+				// updatePermalink();
+				group.remove( textMesh1 );
+				if ( mirror ) group.remove( textMesh2 );
+				if ( !text ) return;
+				createText();
+			}
+			function onDocumentMouseDown( event ) {
+				event.preventDefault();
+				document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+				document.addEventListener( 'mouseup', onDocumentMouseUp, false );
+				document.addEventListener( 'mouseout', onDocumentMouseOut, false );
+				mouseXOnMouseDown = event.clientX - windowHalfX;
+				targetRotationOnMouseDown = targetRotation;
+			}
+			function onDocumentMouseMove( event ) {
+				mouseX = event.clientX - windowHalfX;
+				targetRotation = targetRotationOnMouseDown + ( mouseX - mouseXOnMouseDown ) * 0.02;
+			}
+			function onDocumentMouseUp( event ) {
+				document.removeEventListener( 'mousemove', onDocumentMouseMove, false );
+				document.removeEventListener( 'mouseup', onDocumentMouseUp, false );
+				document.removeEventListener( 'mouseout', onDocumentMouseOut, false );
+			}
+			function onDocumentMouseOut( event ) {
+				document.removeEventListener( 'mousemove', onDocumentMouseMove, false );
+				document.removeEventListener( 'mouseup', onDocumentMouseUp, false );
+				document.removeEventListener( 'mouseout', onDocumentMouseOut, false );
+			}
+			function onDocumentTouchStart( event ) {
+				if ( event.touches.length == 1 ) {
+					event.preventDefault();
+					mouseXOnMouseDown = event.touches[ 0 ].pageX - windowHalfX;
+					targetRotationOnMouseDown = targetRotation;
+				}
+			}
+			function onDocumentTouchMove( event ) {
+				if ( event.touches.length == 1 ) {
+					event.preventDefault();
+					mouseX = event.touches[ 0 ].pageX - windowHalfX;
+					targetRotation = targetRotationOnMouseDown + ( mouseX - mouseXOnMouseDown ) * 0.05;
+				}
+			}
+			//
 			function animate() {
-
 				requestAnimationFrame( animate );
-
 				render();
 				stats.update();
-
 			}
-
-			var radius = 600;
-			var theta = 0;
-
 			function render() {
-
-				TWEEN.update();
-
-				theta += 0.1;
-
-				camera.position.x = radius * Math.sin( THREE.Math.degToRad( theta ) );
-				camera.position.y = radius * Math.sin( THREE.Math.degToRad( theta ) );
-				camera.position.z = radius * Math.cos( THREE.Math.degToRad( theta ) );
-				camera.lookAt( scene.position );
-
+				group.rotation.y += ( targetRotation - group.rotation.y ) * 0.05;
+				camera.lookAt( cameraTarget );
+				renderer.clear();
 				renderer.render( scene, camera );
-
 			}
-
 		</script>
 
 	</body>

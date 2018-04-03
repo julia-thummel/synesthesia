@@ -1,20 +1,17 @@
 body {
-  width: 100%;
-  height: auto;
-  background-color: #ffffff;
-  margin: 0px;
+  overflow: hidden;
 }
 
 #introduction {
   width: 100%;
   display: block;
-  background: linear-gradient(to bottom right, #8cf2b8, #60cfe0);
+  background: linear-gradient(to bottom right, #ffca59, #ff8859);
 }
 
 #interaction1 {
   width: 100%;
   display: block;
-  background-color: red;
+  background-color: #201f1f;
 }
 
 #interaction2 {
@@ -23,96 +20,19 @@ body {
   background-color: blue;
 }
 
-.labelContainer {
-  position: fixed;
-  margin: 0;
-  top: 0;
-  left: 0;
+/* body {
+  font-family: Monospace;
+  background-color: #000;
+  color: #fff;
+  margin: 0px;
+  overflow: hidden;
+} */
+/* #info {
+  position: absolute;
+  top: 10px;
   width: 100%;
-  height: 10%;
-  z-index: 110;
-}
-
-.pageName {
-  position: fixed;
-  margin: 0;
-  top: 2%;
-  left: 10%;
-  width: 12%;
-  height: 10%;
-}
-
-.sectionName {
-  position: fixed;
-  display: inline-block;
-  margin: 0;
-  top: 65%;
-  left: 79%;
-  width: 35%;
-  height: 10%;
-  transform: rotate(90deg);
-}
-
-.sn {
-  margin: 0 0 0 5%;
-}
-
-.introContent {
-  width: 50%;
-  height: 20%;
-  position: fixed;
-  left: 25%;
-  top: 30%;
-}
-
-.introTitle {
   text-align: center;
-}
-
-.introParagraph {
-
-}
-
-button {
-  width: 10%;
-  height: 5%;
-  background-color: transparent;
-  position: fixed;
-  border: 2px solid white;
-  border-radius: 30px;
-  color: white;
-  text-transform: uppercase;
-  font-weight: 400;
-  z-index: 120;
-}
-
-.down {
-  left: 45%;
-  top: 80%;
-}
-
-.left {
-  left: 15%;
-  top: 20%;
-}
-
-.right {
-  right: 15%;
-  top: 20%;
-}
-
-.LArrow {
-  position: fixed;
-  left: 12%;
-  top: 20.5%;
-  width: 2%;
-  transform: rotate(90deg);
-}
-
-.RArrow {
-  position: fixed;
-  right: 12%;
-  top: 20.5%;
-  width: 2%;
-  transform: rotate(-90deg);
-}
+  z-index: 100;
+  display:block;
+} */
+/* #info a, .button { color: #f00; font-weight: bold; text-decoration: underline; cursor: pointer } */

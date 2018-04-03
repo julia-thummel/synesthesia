@@ -5,7 +5,8 @@
 	<link rel="stylesheet" type="text/css" href="../css/video.css">
 	<link rel="stylesheet" type="text/css" href="../css/cm.css">
 	<link rel="stylesheet" type="text/css" href="../css/general.css">
-	<link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:700|Lato:300,400" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../css/subpage.css">
+	<link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:400,600i,700|Lato:300,400,900" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="../js/jquery.color.min.js"></script>
 	<script src="../three.js-dev/build/three.min.js"></script>
@@ -15,95 +16,109 @@
 
 	<body>
 
-    <!-- logo -->
-    		<a class="logo" href="index.html">
-    			<img src="../viscomp/logo.svg" alt="home">
-    		</a>
-    <!--  -->
+
+		<!-- logo -->
+				<a class="remain logo" href="index.html">
+					<img class ="remain" src="../viscomp/logo.svg" alt="home">
+				</a>
+		<!--  -->
 
 		<!-- lables -->
-		<div class="labelContainer">
+		<div class="remain labelContainer">
 			<div class="pageName">
 				<h3>Chromosthesia</h3>
 			</div>
 			<div class="sectionName">
-				<h4 class= "sn">introduction</h4>
-				<h4 class= "sn">sound + color</h4>
-				<h4 class= "sn">music + color</h4>
+				<h4 class= "one sn">introduction</h4>
+				<h4 class= "two sn">sound + color</h4>
+				<h4 class= "three sn">music + color</h4>
 			</div>
 		</div>
 		<!--  -->
 
-    <!-- menu -->
-    		<div class="menuContainer slide">
-    			<img class="menuIcon" src="../viscomp/menu.svg" alt="menu">
-    			<ul class="menu">
-    				<li class="menuItem"><a class="menuItem" href="1gc.html">sight</a></li>
-    				<li class="menuItem"><a class="menuItem" href="2cm.html">sound</a></li>
-    				<li class="menuItem"><a class="menuItem" href="3ss.html">space</a></li>
-    				<li class="menuItem"><a class="menuItem" href="4at.html">touch</a></li>
-    			</ul>
-    		</div>
-    <!--  -->
+		<div class="mainFrame">
 
-    <!-- frame -->
-    		<div class="frame topBar">
-    		</div>
-    		<div class="frame bottomBar">
-    		</div>
-    		<div class="frame leftBar">
-    		</div>
-    		<div class="frame rightBar">
-    		</div>
-    <!--  -->
+		<!-- menu -->
+				<div class="menuContainer slide">
+					<img class="menuIcon" src="../viscomp/menu.svg" alt="menu">
+					<ul class="menu">
+						<li class="menuItem"><a class="menuItem" href="1gc.html">sight</a></li>
+						<li class="menuItem"><a class="menuItem" href="2cm.html">sound</a></li>
+						<li class="menuItem"><a class="menuItem" href="3ss.html">space</a></li>
+						<li class="menuItem"><a class="menuItem" href="4at.html">touch</a></li>
+					</ul>
+				</div>
+		<!--  -->
+
+		<!-- frame -->
+				<div class="frame topBar">
+				</div>
+				<div class="frame bottomBar">
+				</div>
+				<div class="frame leftBar">
+				</div>
+				<div class="frame rightBar">
+				</div>
+		<!--  -->
+
+		</div>
 
 
 		<div id="introduction">
 
+
 		<!-- title -->
-			<div class="introContent">
-				<div class="introTitle">
-					<h2>Chromosthesia</h2>
-				</div>
-				<div class="introParagraph">
-					<p>Associating colors or shapes when hearing musical or non-musical sounds.
-						Chromosthesia can be associative or projected depending on the person,
-						and associations can range in specificity from a simple color to a specific
-						detailed shape and movement of that shape.</p>
-				</div>
+		<div class="introContent">
+			<h4 class="subHead">sound</h4>
+			<img class="subheadLine" src="../viscomp/subheadLine.svg">
+			<h2 class="introTitle">Chromosthesia</h2>
+			<div class="introParagraph">
+				<p>Associating colors or shapes when hearing musical or non-musical sounds.
+					Chromosthesia can be associative or projected depending on the person,
+					and associations can range in specificity from a simple color to a specific
+					detailed shape and movement of that shape.</p>
 			</div>
+		</div>
 		<!--  -->
 
 		<!-- buttons -->
-			<div class="button">
-				<button class="down">continue</button>
+			<div>
+				<button class="continue"><img class="continueIcon" src="../viscomp/continue.svg">continue</button>
 			</div>
 
-			<div class="button">
+			<div>
 				<a href="1gc.html">
-					<button class="left"><img class="LArrow" src="../viscomp/arrow.svg">sight</button>
+					<button class="button left"><img class="LArrow" src="../viscomp/arrow.svg">sight</button>
 				</a>
 			</div>
 
-			<div class="button">
+			<div>
 				<a href="3ss.html">
-					<button class="right"><img class="RArrow" src="../viscomp/arrow.svg">space</button>
+					<button class="button right"><img class="RArrow" src="../viscomp/arrow.svg">space</button>
 				</a>
 			</div>
 		<!--  -->
 
 
-  </div>
+		</div>
+
+
+		<div class="blackSquare">
+		</div>
+
+
+		<div id="interaction1">
+			<div>
+				<button class="back">back</button>
+			</div>
+		</div>
 
 
 
-	<div id="interaction1">
-	</div>
+		<div id="interaction2">
+		</div>
 
 
-
-	<div id="interaction2">
-	</div>
 
 
   </body>

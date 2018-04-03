@@ -28,20 +28,17 @@ ul {
 h1 {
   font-size: 65pt;
   font-family: 'Cormorant Garamond', serif;
-  color: inherit;
 }
 
 h2 { /* home pages after initial */
   font-size: 40pt;
   font-family: 'Cormorant Garamond', serif;
-  color: inherit;
 }
 
 h3 { /* page titles */
   margin: 0;
   font-size: 12pt;
   font-family: 'Cormorant Garamond', serif;
-  color: inherit;
 }
 
 h4 { /* section titles */
@@ -51,20 +48,19 @@ h4 { /* section titles */
   font-family: 'Lato', sans-serif;
   font-weight: 300;
   text-transform: uppercase;
-  color: inherit;
 }
 
 h5 { /* home page intro */
   font-size: 16pt;
   font-family: 'Lato', sans-serif;
   font-weight: 300;
-  color: black;
 }
 
 p {
   font-size: 10pt;
   font-family: 'Lato', sans-serif;
   font-weight: 300;
+  line-height: 1.5;
 }
 
 
@@ -78,7 +74,7 @@ p {
 .logo {
   position: fixed;
   width: 2%;
-  z-index: 111;
+  z-index: 125;
   padding: .6% 0% 0% 5%;
 }
 
