@@ -19,3 +19,143 @@ body {
   display: block;
   background-color: blue;
 }
+
+.playButton {
+  width: 10%;
+  height: auto;
+  position: absolute;
+  top: 37%;
+  left: 45%;
+  background-color: transparent;
+  border: none;
+}
+
+.playButtonInstr {
+  width: 35%;
+  height: auto;
+  position: absolute;
+  left: 40%;
+  top: 55%;
+  line-height: 1.7;
+  color: white;
+  z-index: 110;
+}
+
+.soundMenu {
+  width: 20%;
+  height: 85%;
+  position: absolute;
+  left: 10%;
+  top: 32%;
+  z-index: 110;
+}
+
+.soundBubble {
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 100%;
+  display: inline-block;
+  margin: 0% 50% 20% 0%;
+}
+
+.filledBubble {
+  width: 18px;
+  height: 18px;
+  background-color: white;
+  border-radius: 100%;
+  margin: 5% 5% 5% 5%;
+  opacity: 0;
+}
+
+.musicLable {
+  width: auto;
+  height: auto;
+  color: white;
+  margin: 20% 10% 5% 10%;
+  position: relative;
+  left: 30px;
+  top: -20px;
+}
+
+
+.aniClarinet {
+  animation-name: clarinet;
+  animation-duration: 30s;
+  animation-timing-function: ease;
+}
+
+@keyframes clarinet {
+    0%   {top: -100%; z-index: 109;}
+    100% {top: 100%; z-index: 109;}
+}
+
+.aniBass {
+  animation-name: bass;
+  animation-duration: 30s;
+  animation-timing-function: ease;
+}
+
+@keyframes bass {
+    0%   {top: -100%; z-index: 109;}
+    100% {top: 100%; z-index: 109;}
+}
+
+.aniDrums {
+  animation-name: drums;
+  animation-duration: 30s;
+  animation-timing-function: ease;
+}
+
+@keyframes drums {
+    0%   {top: -100%; z-index: 109;}
+    100% {top: 100%; z-index: 109;}
+}
+
+.aniVocals {
+  animation-name: vocals;
+  animation-duration: 30s;
+  animation-timing-function: ease;
+}
+
+@keyframes vocals {
+    0%   {top: -100%; z-index: 109;}
+    100% {top: 100%; z-index: 109;}
+}
+
+
+/* drums
+straight lines,
+grey ish tones
+white
+circles
+solid tones
+lower right
+
+
+guitar
+orange
+wavy lines
+dry, hazy tones
+middle to top,
+travels up and down mostly
+
+
+piano
+full, wet tones
+blue ish
+circles,
+interaction with background
+middle to top
+travels side to side
+
+
+bass
+red
+solid tones
+subdued,
+interaction with background
+lower left
+
+*/

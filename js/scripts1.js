@@ -2,6 +2,9 @@ $(document).ready(function(){
 
 
 
+$(".logoWhite").hide();
+
+
 //Menu Slider
   jQuery.fn.extend({
       slideIn: function () {
@@ -12,7 +15,7 @@ $(document).ready(function(){
 
   jQuery.fn.extend({
       slideOut: function () {
-        $(this).animate({left: "-27%"}, {easing: "swing", queue: false, duration: 100});
+        $(this).animate({left: "-22%"}, {easing: "swing", queue: false, duration: 100});
         $(this).addClass("slide");
       }
   });
@@ -130,13 +133,13 @@ $(".three").click(function(){
 
 
 
-$("#interaction1, .back").hide();
+$("#interaction1, #interaction2, .back").hide();
 
 
 
 // continue button
 jQuery.fn.extend({
-    continueTrans: function () {
+    transOne: function () {
       $(".blackSquare").css({"z-index": "110"});
       $(".two").makeActive();
       $(".blackSquare").delay(300).animate({opacity: 1}, {queue: false, duration: 800});
@@ -146,30 +149,63 @@ jQuery.fn.extend({
         width: "100%",
         height: "100%"},
         {easing: "swing", queue: true, duration: 500});
-        $(".introContent, .button, .continue").delay(400).animate({opacity: 0,}, {queue: true, duration: 300});
-        $("#introduction, .mainFrame").delay(1500).queue(function (next) {
-          $(this).hide();
-          next();
-        });
-        $(".remain").css({"color": "white"});
-        $(".blackSquare").delay(800).queue(function (next) {
-          $(this).fadeOut(500);
-          next();
-        });
-        $("#interaction1, .back").delay(800).queue(function (next) {
-          $(this).show();
-          next();
-        });
-        $("#interaction1").addClass("current");
+      $(".introContent, .button, .continue").delay(400).animate({opacity: 0}, {queue: true, duration: 300});
+      $("#introduction, .mainFrame, .logo").delay(1500).queue(function (next) {
+        $(this).hide();
+        $(".logoWhite").show();
+        next();
+      });
+      $(".remain").css({"color": "white"});
+      $(".blackSquare").delay(800).queue(function (next) {
+        $(this).fadeOut(500);
+        next();
+      });
+      $("#interaction1, .back").delay(800).queue(function (next) {
+        $(this).show();
+        next();
+      });
+      $("#interaction1").addClass("current");
     }
 });
 
+
+jQuery.fn.extend({
+    transTwo: function () {
+      $(".three").makeActive();
+      $(".blackSquare").queue(function (next) {
+        $(this).fadeIn(500);
+        next();
+      });
+      $("#interaction1").delay(1600).queue(function (next) {
+        $(this).hide();
+        next();
+      });
+      $(".blackSquare").delay(1300).queue(function (next) {
+        $(this).fadeOut(500);
+        next();
+      });
+      $(".interaction2").delay(2000).queue(function (next) {
+        $(this).show();
+        next();
+      });
+      $("#interaction2").delay(1500).show();
+      $("#interaction1").removeClass("current");
+      $("#interaction2").addClass("current");
+    }
+});
+
+
+
 $(".continue").click(function(){
-  $(".continue").continueTrans();
+  $(".continue").transOne();
 });
 
 $(".two").click(function(){
-  $(".two").continueTrans();
+  $(".two").transOne();
+});
+
+$(".three").click(function(){
+  $(".three").transTwo();
 });
 //end
 
@@ -191,9 +227,10 @@ jQuery.fn.extend({
       });
       $("#interaction1, #interaction2, .back").delay(600).queue(function (next) {
         $(this).hide();
+        $(".logoWhite").hide();
         next();
       });
-      $("#introduction, .mainFrame, .introContent").delay(600).queue(function (next) {
+      $("#introduction, .mainFrame, .logo, .introContent").delay(600).queue(function (next) {
         $(".introContent").animate({opacity: 1,}, {queue: true, duration: 300});
         $(this).show();
         $(".remain").css({"color": "#201f1f"});
@@ -218,6 +255,8 @@ $(".one").click(function(){
 //end
 
 
+
+//arrays for letter color
 var zero = "#fff06a";
 var one = "#e55b1b";
 var two = "#7c6b62";
@@ -228,32 +267,32 @@ var six = "#fff06a";
 var seven = "#fff06a";
 var eight = "#fff06a";
 var nine = "#fff06a";
-var a = "#fff06a";
-var b = "#fff06a";
-var c = "#fff06a";
-var d = "#fff06a";
-var e = "#fff06a";
-var f = "#fff06a";
-var g = "#fff06a";
-var h = "#fff06a";
-var i = "#fff06a";
-var j = "#fff06a";
-var k = "#fff06a";
-var l = "#fff06a";
-var m = "#fff06a";
-var n = "#fff06a";
-var o = "#fff06a";
-var p = "#fff06a";
-var q = "#fff06a";
-var r = "#fff06a";
-var s = "#fff06a";
-var t = "#fff06a";
-var u = "#fff06a";
-var v = "#fff06a";
-var w = "#fff06a";
-var x = "#fff06a";
-var y = "#fff06a";
-var z = "#fff06a";
+var a = "#f7c213";
+var b = "#e21102";
+var c = "#039301";
+var d = "#6f912b";
+var e = "#fcf046";
+var f = "#4f7f50";
+var g = "#005901";
+var h = "#eaefba";
+var i = "#aafffd";
+var j = "#8340d6";
+var k = "#e21646";
+var l = "#4c82e0";
+var m = "#20aa8f";
+var n = "#1a3823";
+var o = "#04068c";
+var p = "#ea25d3";
+var q = "#d6a4d0";
+var r = "#425946";
+var s = "#c6482f";
+var t = "#8c0505";
+var u = "#f7d2eb";
+var v = "#e87f06";
+var w = "#c1c0bf";
+var x = "#9b2b0c";
+var y = "#e0d8a1";
+var z = "#f93e00";
 
 var keyNum = [
   48, 49, 50, 51, 52, 53, 54, 55, 56, 57,
@@ -275,8 +314,10 @@ var colors = [
   k, l, m, n, o, p, q, r, s, t,
   u, v, w, x, y, z
 ];
+//end
 
 
+//letters show up on keypress
 window.onkeydown = function(event) {
   for (i=0; i < keyNum.length; i++) {
     if (event.keyCode == keyNum[i]) {
@@ -288,11 +329,89 @@ window.onkeydown = function(event) {
     $(".keyboardIcon, .useKeyboard").fadeOut(300);
     $(".g").removeClass("activeLetter");
     $(".g").addClass("backgroundLetter");
-    var grapheme = $("<h1 class='g activeLetter'></h1>").text(name);
+    var posX = Math.random()* $( window ).width();
+    var posY = Math.random()* $( window ).height();
+    $(".p").css({"left": posX +"px", "top": posY +"px"});
+    $(".backgroundLetter").removeClass("g");
+    $(".backgroundLetter").removeClass("p");
+    var grapheme = $("<h1 class='g p activeLetter'></h1>").text(name);
     $("#interaction1").append(grapheme);
     $(".activeLetter").css({"color": color});
+    $(".backgroundLetter").css({"color": "white", "opacity": ".5"});
   };
 };
+//end
+
+
+//background letter styling
+function move() {
+  $(".backgroundLetter").each(function (){
+    var position = $(this).position();
+    $(this).data("position", position);
+    $(this).animate({left: position.left + Math.random()*50, top: position.top + Math.random()*50}, {easing: "swing", queue: true, duration: 10000});
+    $(this).animate({left: position.left - Math.random()*50, top: position.top - Math.random()*50}, {easing: "swing", queue: true, duration: 10000});
+  });
+  window.setTimeout(move, 1000);
+};
+
+move();
+//end
+
+
+
+
+//audio
+
+  //get mouse position
+  $( document ).on( "mousemove", function( event ) {
+    var mouseX = event.pageX;
+  });
+  //end
+
+
+  // var left = document.getElementById("left");
+  // var right = document.getElementById("right");
+
+
+    // play on continue
+    function playLeft(){
+       left.play();
+    }
+
+    function playRight(){
+       right.play();
+    }
+
+    $(".continue").click(function(){
+      playLeft();
+      playRight();
+    });
+
+    $(".back, .one").click(function(){
+      left.pause();
+      right.pause();
+    });
+    //end
+
+
+
+    //volume based on mouse position
+
+    $(document).mousemove(function(){
+      // var mouseX = event.pageX;
+      var width = $(window).width()
+      var vol = ((mouseX * 2) / width)
+      var left = document.getElementById("left");
+      var right = document.getElementById("right");
+      left.volume = 1-vol;
+      right.volume = vol;
+      // console.log(left.volume);
+      // console.log(right.volume);
+      // console.log(vol);
+      // console.log(mouseX);
+      // console.log(width);
+    });
+    //end
 
 
 

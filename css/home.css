@@ -38,7 +38,7 @@
   height: 50%;
   position: absolute;
   display: block;
-  top: 25%;
+  top: 21%;
   left: 15%;
   z-index: 120;
 }
@@ -47,7 +47,7 @@
   position: fixed;
   width: 30%;
   height: auto;
-  top: 29%;
+  top: 27%;
   left: 21%;
   z-index: 120;
 }
@@ -78,7 +78,7 @@
   position: absolute;
   width: 30%;
   height: auto;
-  top: 50%;
+  top: 44%;
   left: 21%;
   z-index: 120;
 }

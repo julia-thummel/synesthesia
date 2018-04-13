@@ -44,10 +44,11 @@ body {
 .activeLetter {
   width: auto;
   height: auto;
-  font-size: 120pt;
+  margin: 0;
+  font-size: 250pt;
   position: fixed;
   left: 45%;
-  top: 45%;
+  top: 25%;
   z-index: 60;
 }
 
@@ -56,5 +57,9 @@ body {
   height: auto;
   font-size: 40pt;
   position: fixed;
+  /* left: 100px;
+  top: 500px; */
+  color: white;
+  opacity; .5;
   z-index: 60;
 }

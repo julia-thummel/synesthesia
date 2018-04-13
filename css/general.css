@@ -78,12 +78,19 @@ p {
   padding: .6% 0% 0% 5%;
 }
 
+.logoWhite {
+  position: fixed;
+  width: 2%;
+  z-index: 125;
+  padding: .6% 0% 0% 5%;
+}
+
 .menuContainer {
   font-family: 'Lato', sans-serif;
   font-weight: 400;
   position: fixed;
-  left: -27%;
-  width: 30%;
+  left: -22%;
+  width: 25%;
   height: 100%;
   z-index: 110;
   background-color: white;
@@ -92,7 +99,7 @@ p {
 .menuIcon {
   position: fixed;
   width: 2.6%;
-  padding: 25% 0% 0% 29.2%;
+  padding: 27% 0% 0% 24%;
 }
 
 .menu {

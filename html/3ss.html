@@ -6,11 +6,6 @@
 		<link rel="stylesheet" type="text/css" href="../css/ss.css">
 		<link rel="stylesheet" type="text/css" href="../css/subpage.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<!-- <script src="../three.js-dev/build/three.js"></script>
-		<script src="../three.js-dev/examples/js/renderers/Projector.js"></script>
-		<script src="../three.js-dev/examples/js/renderers/CanvasRenderer.js"></script>
-		<script src="../three.js-dev/examples/js/libs/stats.min.js"></script>
-		<script src="../three.js-dev/examples/js/libs/tween.min.js"></script> -->
 		<script src="../js/scripts1.js"></script>
 		<link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:400,600i,700|Lato:300,400,900" rel="stylesheet">
 		<meta charset="utf-8">
@@ -24,6 +19,9 @@
 		<!-- logo -->
 				<a class="remain logo" href="index.html">
 					<img class ="remain" src="../viscomp/logo.svg" alt="home">
+				</a>
+				<a class="logoWhite" href="index.html">
+					<img src="../viscomp/logo-white.svg" alt="home">
 				</a>
 		<!--  -->
 
@@ -78,7 +76,8 @@
 			<div class="introParagraph">
 				<p>seeing sequences, such as months in the year, days of the week, or simple sequences of numbers,
 					as having a specific place in space. These sequences can take many forms;
-					for example, some report seeing time as a large clock around them.</p>
+					for example, some report seeing time as a large clock around them. Others remember dates as occupying
+					a physical place in space. Click continue to see a various sequences in space.</p>
 			</div>
 		</div>
 		<!--  -->
@@ -115,205 +114,116 @@
 			</div>
 		<!-- </div> -->
 
+		<div id="container"></div>
 
 
 		<script src="../three.js/build/three.js"></script>
 		<script src="../three.js/examples/js/utils/GeometryUtils.js"></script>
-
 		<script src="../three.js/examples/js/Detector.js"></script>
 		<script src="../three.js/examples/js/libs/stats.min.js"></script>
+		<script src="../three.js/examples/js/controls/TrackballControls.js"></script>
 
 
 		<script>
 
-			if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
-			THREE.Cache.enabled = true;
-			var container, stats, permalink, hex, color;
-			var camera, cameraTarget, scene, renderer;
-			var group, textMesh1, textMesh2, textGeo, materials;
-			var firstLetter = true;
-			var text = "sequencing",
+			var hex, color;
+			var group, textMesh0, textMesh1, textMesh2, textMesh3, textMesh4, textMesh5, textMesh6, textMesh7, textMesh8, textMesh9, textMesh10, textMesh11, textGeo0, textGeo1, textGeo2, textGeo3, textGeo4, textGeo5, textGeo6, textGeo7, textGeo8, textGeo9, textGeo10, textGeo11, materials;
+			var text = ["1:00", "2:00", "3:00", "4:00", "5:00", "6:00", "7:00", "8:00", "9:00", "10:00", "11:00", "12:00"],
 				height = 20,
-				size = 70,
+				size = 300,
 				hover = 30,
 				curveSegments = 4,
-				bevelThickness = 2,
-				bevelSize = 1.5,
+				bevelThickness = 5,
+				bevelSize = 3,
 				bevelSegments = 3,
 				bevelEnabled = true,
 				font = undefined,
 				fontName = "helvetiker", // helvetiker, optimer, gentilis, droid sans, droid serif
 				fontWeight = "regular"; // normal bold
-			var mirror = false;
-			var fontMap = {
-				"helvetiker": 0,
-				"optimer": 1,
-				"gentilis": 2,
-				"droid/droid_sans": 3,
-				"droid/droid_serif": 4
-			};
-			var weightMap = {
-				"regular": 0,
-				"bold": 1
-			};
-			var reverseFontMap = [];
-			var reverseWeightMap = [];
-			for ( var i in fontMap ) reverseFontMap[ fontMap[i] ] = i;
-			for ( var i in weightMap ) reverseWeightMap[ weightMap[i] ] = i;
-			var targetRotation = 0;
-			var targetRotationOnMouseDown = 0;
-			var mouseX = 0;
-			var mouseXOnMouseDown = 0;
-			var windowHalfX = window.innerWidth / 2;
-			var windowHalfY = window.innerHeight / 2;
-			var fontIndex = 1;
+
+
+//box vars
+			var container;
+			var camera, controls, scene, renderer;
+			var pickingData = [], pickingTexture, pickingScene;
+			var objects = [];
+
+			var mouse = new THREE.Vector2();
+			var offset = new THREE.Vector3( 10, 10, 10 );
+//
+
 			init();
 			animate();
-			function decimalToHex( d ) {
-				var hex = Number( d ).toString( 16 );
-				hex = "000000".substr( 0, 6 - hex.length ) + hex;
-				return hex.toUpperCase();
-			}
+
 			function init() {
-				container = document.createElement( 'div' );
-				document.body.appendChild( container );
+				container = document.getElementById( "container" );
+
 				// CAMERA
-				camera = new THREE.PerspectiveCamera( 30, window.innerWidth / window.innerHeight, 1, 1500 );
-				camera.position.set( 0, 400, 700 );
-				cameraTarget = new THREE.Vector3( 0, 150, 0 );
+				camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 10000 );
+				camera.position.z = 1000;
+
+				controls = new THREE.TrackballControls( camera );
+				controls.rotateSpeed = 1.0;
+				controls.zoomSpeed = 1.2;
+				controls.panSpeed = 0.8;
+				controls.noZoom = false;
+				controls.noPan = false;
+				controls.staticMoving = true;
+				controls.dynamicDampingFactor = 0.3;
+
 				// SCENE
 				scene = new THREE.Scene();
-				scene.background = new THREE.Color( 0x000000 );
-				scene.fog = new THREE.Fog( 0x000000, 250, 1400 );
+				scene.background = new THREE.Color( 0x201f1f );
+
+				pickingScene = new THREE.Scene();
+				pickingTexture = new THREE.WebGLRenderTarget( window.innerWidth, window.innerHeight );
+				pickingTexture.texture.minFilter = THREE.LinearFilter;
+
 				// LIGHTS
-				var dirLight = new THREE.DirectionalLight( 0xffffff, 0.125 );
-				dirLight.position.set( 0, 0, 1 ).normalize();
-				scene.add( dirLight );
-				var pointLight = new THREE.PointLight( 0xffffff, 1.5 );
-				pointLight.position.set( 0, 100, 90 );
-				scene.add( pointLight );
-				// Get text from hash
-				var hash = document.location.hash.substr( 1 );
-				if ( hash.length !== 0 ) {
-					var colorhash  = hash.substring( 0, 6 );
-					var fonthash   = hash.substring( 6, 7 );
-					var weighthash = hash.substring( 7, 8 );
-					var bevelhash  = hash.substring( 8, 9 );
-					// var texthash   = hash.substring( 10 );
-					hex = colorhash;
-					pointLight.color.setHex( parseInt( colorhash, 16 ) );
-					fontName = reverseFontMap[ parseInt( fonthash ) ];
-					fontWeight = reverseWeightMap[ parseInt( weighthash ) ];
-					bevelEnabled = parseInt( bevelhash );
-					// text = decodeURI( texthash );
-				} else {
-					pointLight.color.setHSL( Math.random(), 1, 0.5 );
-					hex = decimalToHex( pointLight.color.getHex() );
-				}
+
+				scene.add( new THREE.AmbientLight( 0x555555 ) );
+
+				var light = new THREE.SpotLight( 0xffffff, 1.5 );
+				light.position.set( 0, 500, 2000 );
+				scene.add( light );
+
+
+
 				materials = [
-					new THREE.MeshPhongMaterial( { color: 0xffffff, flatShading: true } ), // front
+					new THREE.MeshPhongMaterial( { color: 0xffffff } ), // front
 					new THREE.MeshPhongMaterial( { color: 0xffffff } ) // side
 				];
 				group = new THREE.Group();
 				group.position.y = 100;
 				scene.add( group );
 				loadFont();
-				var plane = new THREE.Mesh(
-					new THREE.PlaneBufferGeometry( 10000, 10000 ),
-					new THREE.MeshBasicMaterial( { color: 0xffffff, opacity: 0.5, transparent: true } )
-				);
-				plane.position.y = 100;
-				plane.rotation.x = - Math.PI / 2;
-				scene.add( plane );
+
+
+
 				// RENDERER
 				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				container.appendChild( renderer.domElement );
-				// STATS
-				stats = new Stats();
-				//container.appendChild( stats.dom );
-				// EVENTS
-				document.addEventListener( 'mousedown', onDocumentMouseDown, false );
-				document.addEventListener( 'touchstart', onDocumentTouchStart, false );
-				document.addEventListener( 'touchmove', onDocumentTouchMove, false );
-				document.addEventListener( 'keypress', onDocumentKeyPress, false );
-				document.addEventListener( 'keydown', onDocumentKeyDown, false );
-				// document.getElementById( "color" ).addEventListener( 'click', function() {
-				// 	pointLight.color.setHSL( Math.random(), 1, 0.5 );
-				// 	hex = decimalToHex( pointLight.color.getHex() );
-				// 	updatePermalink();
-				// }, false );
-				// document.getElementById( "font" ).addEventListener( 'click', function() {
-				// 	fontIndex ++;
-				// 	fontName = reverseFontMap[ fontIndex % reverseFontMap.length ];
-				// 	loadFont();
-				// }, false );
-				// document.getElementById( "weight" ).addEventListener( 'click', function() {
-				// 	if ( fontWeight === "bold" ) {
-				// 		fontWeight = "regular";
-				// 	} else {
-				// 		fontWeight = "bold";
-				// 	}
-				// 	loadFont();
-				// }, false );
-				// document.getElementById( "bevel" ).addEventListener( 'click', function() {
-				// 	bevelEnabled = !bevelEnabled;
-				// 	refreshText();
-				// }, false );
-				//
-				window.addEventListener( 'resize', onWindowResize, false );
+
+				renderer.domElement.addEventListener( 'mousemove', onMouseMove );
+
 			}
-			function onWindowResize() {
-				windowHalfX = window.innerWidth / 2;
-				windowHalfY = window.innerHeight / 2;
-				camera.aspect = window.innerWidth / window.innerHeight;
-				camera.updateProjectionMatrix();
-				renderer.setSize( window.innerWidth, window.innerHeight );
-			}
-			//
-			function boolToNum( b ) {
-				return b ? 1 : 0;
-			}
-			// function updatePermalink() {
-			// 	var link = hex + fontMap[ fontName ] + weightMap[ fontWeight ] + boolToNum( bevelEnabled ) + "#" + encodeURI( text );
-			// 	permalink.href = "#" + link;
-			// 	window.location.hash = link;
-			// }
-			function onDocumentKeyDown( event ) {
-				if ( firstLetter ) {
-					firstLetter = false;
-					text = "";
-				}
-				var keyCode = event.keyCode;
-				// backspace
-				if ( keyCode == 8 ) {
-					event.preventDefault();
-					text = text.substring( 0, text.length - 1 );
-					refreshText();
-					return false;
-				}
-			}
-			function onDocumentKeyPress( event ) {
-				var keyCode = event.which;
-				// backspace
-				if ( keyCode == 8 ) {
-					event.preventDefault();
-				} else {
-					var ch = String.fromCharCode( keyCode );
-					text += ch;
-					refreshText();
-				}
-			}
+
+
+
 			function loadFont() {
 				var loader = new THREE.FontLoader();
 				loader.load( '../three.js/examples/fonts/helvetiker_regular.typeface.json', function ( response ) {
 					font = response;
-					refreshText();
+					createText();
 				} );
 			}
+
+
 			function createText() {
-				textGeo = new THREE.TextGeometry( text, {
+
+				textGeo0 = new THREE.TextGeometry( text[0], {
 					font: font,
 					size: size,
 					height: height,
@@ -322,105 +232,287 @@
 					bevelSize: bevelSize,
 					bevelEnabled: bevelEnabled
 				});
-				textGeo.computeBoundingBox();
-				textGeo.computeVertexNormals();
+
+				textGeo1 = new THREE.TextGeometry( text[1], {
+					font: font,
+					size: size,
+					height: height,
+					curveSegments: curveSegments,
+					bevelThickness: bevelThickness,
+					bevelSize: bevelSize,
+					bevelEnabled: bevelEnabled
+				});
+
+				textGeo2 = new THREE.TextGeometry( text[2], {
+					font: font,
+					size: size,
+					height: height,
+					curveSegments: curveSegments,
+					bevelThickness: bevelThickness,
+					bevelSize: bevelSize,
+					bevelEnabled: bevelEnabled
+				});
+
+				textGeo3 = new THREE.TextGeometry( text[3], {
+					font: font,
+					size: size,
+					height: height,
+					curveSegments: curveSegments,
+					bevelThickness: bevelThickness,
+					bevelSize: bevelSize,
+					bevelEnabled: bevelEnabled
+				});
+
+				textGeo4 = new THREE.TextGeometry( text[4], {
+					font: font,
+					size: size,
+					height: height,
+					curveSegments: curveSegments,
+					bevelThickness: bevelThickness,
+					bevelSize: bevelSize,
+					bevelEnabled: bevelEnabled
+				});
+
+				textGeo5 = new THREE.TextGeometry( text[5], {
+					font: font,
+					size: size,
+					height: height,
+					curveSegments: curveSegments,
+					bevelThickness: bevelThickness,
+					bevelSize: bevelSize,
+					bevelEnabled: bevelEnabled
+				});
+
+				textGeo6 = new THREE.TextGeometry( text[6], {
+					font: font,
+					size: size,
+					height: height,
+					curveSegments: curveSegments,
+					bevelThickness: bevelThickness,
+					bevelSize: bevelSize,
+					bevelEnabled: bevelEnabled
+				});
+
+				textGeo7 = new THREE.TextGeometry( text[7], {
+					font: font,
+					size: size,
+					height: height,
+					curveSegments: curveSegments,
+					bevelThickness: bevelThickness,
+					bevelSize: bevelSize,
+					bevelEnabled: bevelEnabled
+				});
+
+				textGeo8 = new THREE.TextGeometry( text[8], {
+					font: font,
+					size: size,
+					height: height,
+					curveSegments: curveSegments,
+					bevelThickness: bevelThickness,
+					bevelSize: bevelSize,
+					bevelEnabled: bevelEnabled
+				});
+
+				textGeo9 = new THREE.TextGeometry( text[9], {
+					font: font,
+					size: size,
+					height: height,
+					curveSegments: curveSegments,
+					bevelThickness: bevelThickness,
+					bevelSize: bevelSize,
+					bevelEnabled: bevelEnabled
+				});
+
+				textGeo10 = new THREE.TextGeometry( text[10], {
+					font: font,
+					size: size,
+					height: height,
+					curveSegments: curveSegments,
+					bevelThickness: bevelThickness,
+					bevelSize: bevelSize,
+					bevelEnabled: bevelEnabled
+				});
+
+				textGeo11 = new THREE.TextGeometry( text[11], {
+					font: font,
+					size: size,
+					height: height,
+					curveSegments: curveSegments,
+					bevelThickness: bevelThickness,
+					bevelSize: bevelSize,
+					bevelEnabled: bevelEnabled
+				});
+
+				textGeo0.computeBoundingBox();
+				textGeo0.computeVertexNormals();
+
+				textGeo1.computeBoundingBox();
+				textGeo1.computeVertexNormals();
+
+				textGeo2.computeBoundingBox();
+				textGeo2.computeVertexNormals();
+
+				textGeo3.computeBoundingBox();
+				textGeo3.computeVertexNormals();
+
+				textGeo4.computeBoundingBox();
+				textGeo4.computeVertexNormals();
+
+				textGeo5.computeBoundingBox();
+				textGeo5.computeVertexNormals();
+
+				textGeo6.computeBoundingBox();
+				textGeo6.computeVertexNormals();
+
+				textGeo7.computeBoundingBox();
+				textGeo7.computeVertexNormals();
+
+				textGeo8.computeBoundingBox();
+				textGeo8.computeVertexNormals();
+
+				textGeo9.computeBoundingBox();
+				textGeo9.computeVertexNormals();
+
+				textGeo10.computeBoundingBox();
+				textGeo10.computeVertexNormals();
+
+				textGeo11.computeBoundingBox();
+				textGeo11.computeVertexNormals();
 				// "fix" side normals by removing z-component of normals for side faces
 				// (this doesn't work well for beveled geometry as then we lose nice curvature around z-axis)
-				if ( ! bevelEnabled ) {
-					var triangleAreaHeuristics = 0.1 * ( height * size );
-					for ( var i = 0; i < textGeo.faces.length; i ++ ) {
-						var face = textGeo.faces[ i ];
-						if ( face.materialIndex == 1 ) {
-							for ( var j = 0; j < face.vertexNormals.length; j ++ ) {
-								face.vertexNormals[ j ].z = 0;
-								face.vertexNormals[ j ].normalize();
-							}
-							var va = textGeo.vertices[ face.a ];
-							var vb = textGeo.vertices[ face.b ];
-							var vc = textGeo.vertices[ face.c ];
-							var s = THREE.GeometryUtils.triangleArea( va, vb, vc );
-							if ( s > triangleAreaHeuristics ) {
-								for ( var j = 0; j < face.vertexNormals.length; j ++ ) {
-									face.vertexNormals[ j ].copy( face.normal );
-								}
-							}
-						}
-					}
-				}
-				var centerOffset = -0.5 * ( textGeo.boundingBox.max.x - textGeo.boundingBox.min.x );
-				textMesh1 = new THREE.Mesh( textGeo, materials );
-				textMesh1.position.x = centerOffset;
-				textMesh1.position.y = hover;
-				textMesh1.position.z = 0;
+
+				textMesh0 = new THREE.Mesh( textGeo0, materials );
+				textMesh0.position.x = Math.random() * 10000 - 5000;
+				textMesh0.position.y = Math.random() * 6000 - 3000;
+				textMesh0.position.z = Math.random() * 4000 - 4000;
+				textMesh0.rotation.x = 0;
+				textMesh0.rotation.y = Math.PI * 2;
+				group.add( textMesh0 );
+
+				textMesh1 = new THREE.Mesh( textGeo1, materials );
+				textMesh1.position.x = Math.random() * 10000 - 5000;
+				textMesh1.position.y = Math.random() * 6000 - 3000;
+				textMesh1.position.z = Math.random() * 4000 - 4000;
 				textMesh1.rotation.x = 0;
 				textMesh1.rotation.y = Math.PI * 2;
 				group.add( textMesh1 );
-				if ( mirror ) {
-					textMesh2 = new THREE.Mesh( textGeo, materials );
-					textMesh2.position.x = centerOffset;
-					textMesh2.position.y = -hover;
-					textMesh2.position.z = height;
-					textMesh2.rotation.x = Math.PI;
-					textMesh2.rotation.y = Math.PI * 2;
-					group.add( textMesh2 );
-				}
+
+				textMesh2 = new THREE.Mesh( textGeo2, materials );
+				textMesh2.position.x = Math.random() * 10000 - 5000;
+				textMesh2.position.y = Math.random() * 6000 - 3000;
+				textMesh2.position.z = Math.random() * 4000 - 4000;
+				textMesh2.rotation.x = 0;
+				textMesh2.rotation.y = Math.PI * 2;
+				group.add( textMesh2 );
+
+				textMesh3 = new THREE.Mesh( textGeo3, materials );
+				textMesh3.position.x = Math.random() * 10000 - 5000;
+				textMesh3.position.y = Math.random() * 6000 - 3000;
+				textMesh3.position.z = Math.random() * 4000 - 4000;
+				textMesh3.rotation.x = 0;
+				textMesh3.rotation.y = Math.PI * 2;
+				group.add( textMesh3 );
+
+				textMesh4 = new THREE.Mesh( textGeo4, materials );
+				textMesh4.position.x = Math.random() * 10000 - 5000;
+				textMesh4.position.y = Math.random() * 6000 - 3000;
+				textMesh4.position.z = Math.random() * 4000 - 4000;
+				textMesh4.rotation.x = 0;
+				textMesh4.rotation.y = Math.PI * 2;
+				group.add( textMesh4 );
+
+				textMesh5 = new THREE.Mesh( textGeo5, materials );
+				textMesh5.position.x = Math.random() * 10000 - 5000;
+				textMesh5.position.y = Math.random() * 6000 - 3000;
+				textMesh5.position.z = Math.random() * 4000 - 4000;
+				textMesh5.rotation.x = 0;
+				textMesh5.rotation.y = Math.PI * 2;
+				group.add( textMesh5 );
+
+				textMesh6 = new THREE.Mesh( textGeo6, materials );
+				textMesh6.position.x = Math.random() * 10000 - 5000;
+				textMesh6.position.y = Math.random() * 6000 - 3000;
+				textMesh6.position.z = Math.random() * 4000 - 4000;
+				textMesh6.rotation.x = 0;
+				textMesh6.rotation.y = Math.PI * 2;
+				group.add( textMesh6 );
+
+				textMesh7 = new THREE.Mesh( textGeo7, materials );
+				textMesh7.position.x = Math.random() * 10000 - 5000;
+				textMesh7.position.y = Math.random() * 6000 - 3000;
+				textMesh7.position.z = Math.random() * 4000 - 4000;
+				textMesh7.rotation.x = 0;
+				textMesh7.rotation.y = Math.PI * 2;
+				group.add( textMesh7 );
+
+				textMesh8 = new THREE.Mesh( textGeo8, materials );
+				textMesh8.position.x = Math.random() * 10000 - 5000;
+				textMesh8.position.y = Math.random() * 6000 - 3000;
+				textMesh8.position.z = Math.random() * 4000 - 4000;
+				textMesh8.rotation.x = 0;
+				textMesh8.rotation.y = Math.PI * 2;
+				group.add( textMesh8 );
+
+				textMesh9 = new THREE.Mesh( textGeo9, materials );
+				textMesh9.position.x = Math.random() * 10000 - 5000;
+				textMesh9.position.y = Math.random() * 6000 - 3000;
+				textMesh9.position.z = Math.random() * 4000 - 4000;
+				textMesh9.rotation.x = 0;
+				textMesh9.rotation.y = Math.PI * 2;
+				group.add( textMesh9 );
+
+				textMesh10 = new THREE.Mesh( textGeo10, materials );
+				textMesh10.position.x = Math.random() * 10000 - 5000;
+				textMesh10.position.y = Math.random() * 6000 - 3000;
+				textMesh10.position.z = Math.random() * 4000 - 4000;
+				textMesh10.rotation.x = 0;
+				textMesh10.rotation.y = Math.PI * 2;
+				group.add( textMesh10 );
+
+				textMesh11 = new THREE.Mesh( textGeo11, materials );
+				textMesh11.position.x = Math.random() * 10000 - 5000;
+				textMesh11.position.y = Math.random() * 6000 - 3000;
+				textMesh11.position.z = Math.random() * 4000 - 4000;
+				textMesh11.rotation.x = 0;
+				textMesh11.rotation.y = Math.PI * 2;
+				group.add( textMesh11 );
 			}
-			function refreshText() {
-				// updatePermalink();
-				group.remove( textMesh1 );
-				if ( mirror ) group.remove( textMesh2 );
-				if ( !text ) return;
-				createText();
-			}
-			function onDocumentMouseDown( event ) {
-				event.preventDefault();
-				document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-				document.addEventListener( 'mouseup', onDocumentMouseUp, false );
-				document.addEventListener( 'mouseout', onDocumentMouseOut, false );
-				mouseXOnMouseDown = event.clientX - windowHalfX;
-				targetRotationOnMouseDown = targetRotation;
-			}
-			function onDocumentMouseMove( event ) {
-				mouseX = event.clientX - windowHalfX;
-				targetRotation = targetRotationOnMouseDown + ( mouseX - mouseXOnMouseDown ) * 0.02;
-			}
-			function onDocumentMouseUp( event ) {
-				document.removeEventListener( 'mousemove', onDocumentMouseMove, false );
-				document.removeEventListener( 'mouseup', onDocumentMouseUp, false );
-				document.removeEventListener( 'mouseout', onDocumentMouseOut, false );
-			}
-			function onDocumentMouseOut( event ) {
-				document.removeEventListener( 'mousemove', onDocumentMouseMove, false );
-				document.removeEventListener( 'mouseup', onDocumentMouseUp, false );
-				document.removeEventListener( 'mouseout', onDocumentMouseOut, false );
-			}
-			function onDocumentTouchStart( event ) {
-				if ( event.touches.length == 1 ) {
-					event.preventDefault();
-					mouseXOnMouseDown = event.touches[ 0 ].pageX - windowHalfX;
-					targetRotationOnMouseDown = targetRotation;
-				}
-			}
-			function onDocumentTouchMove( event ) {
-				if ( event.touches.length == 1 ) {
-					event.preventDefault();
-					mouseX = event.touches[ 0 ].pageX - windowHalfX;
-					targetRotation = targetRotationOnMouseDown + ( mouseX - mouseXOnMouseDown ) * 0.05;
-				}
-			}
+
+
+
+
+
+
 			//
 			function animate() {
 				requestAnimationFrame( animate );
 				render();
-				stats.update();
 			}
 			function render() {
-				group.rotation.y += ( targetRotation - group.rotation.y ) * 0.05;
-				camera.lookAt( cameraTarget );
-				renderer.clear();
+				controls.update();
+				// renderer.clear();
 				renderer.render( scene, camera );
 			}
+
+			function onMouseMove( e ) {
+				mouse.x = e.clientX;
+				mouse.y = e.clientY;
+			}
+
+
+
+
 		</script>
+
+
+
+
+
+
+
+
+
+
 
 	</body>
 </html>
