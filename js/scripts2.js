@@ -1,33 +1,75 @@
 $(document).ready(function(){
 
 
+      var bassAudio = document.getElementById("bassAudio");
+      var vocalsAudio = document.getElementById("vocalsAudio");
+      var drumsAudio = document.getElementById("drumsAudio");
+      var clarinetAudio = document.getElementById("clarinetAudio");
 
-    var bass = $("<audio loop id='bassAudio'><source src='../viscomp/bass.mp3' type='audio/mp3'></audio>");
-    var vocals = $("<audio loop id='vocalsAudio'><source src='../viscomp/vocals.mp3' type='audio/mp3'></audio>");
-    var drums = $("<audio loop id='drumsAudio'><source src='../viscomp/drums.mp3' type='audio/mp3'></audio>");
-    var clarinet = $("<audio loop id='clarinetAudio'><source src='../viscomp/clarinet.mp3' type='audio/mp3'></audio>");
+      bassAudio.muted = true;
+      vocalsAudio.muted = true;
+      drumsAudio.muted = true;
+      clarinetAudio.muted = true;
+
+      $("#clarinetVisual").hide();
+      $("#drumsVisual").hide();
+      $("#bassVisual").hide();
+      $("#vocalsVisual").hide();
+
+    $(".continue").click(function(){
+      $("#bass").children(".filledBubble").css({"opacity": "1"});
+      $("#bass").addClass("selected");
+      bassAudio.muted = false;
+      $("#bassVisual").show();
+    });
+
+
+    $(".back, .one").click(function(){
+      bassAudio.muted = true;
+      vocalsAudio.muted = true;
+      drumsAudio.muted = true;
+      clarinetAudio.muted = true;
+    });
 
 
 
-    //select different sounds
-    $("#bass").children(".filledBubble").css({"opacity": "1"});
-    $("#bass").addClass("selected");
-    $("#bass").append(bass);
-    var bassAudio = document.getElementById("bassAudio");
-    bassAudio.pause();
+    $(".animate-me").each(function (){
+      var size = Math.random()*250;
+      var posX = Math.random()* ($( window ).width()) ;
+      var posY = Math.random()* ($( window ).height()) ;
+      $(this).css({"left": posX +"px", "top": posY +"px", "width": (size/2), "height": size});
+      // $(this).css({"left": Math.random()*1300, "width": size, "height": size});
+    });
+
+    function clarinetMove() {
+      $(".animate-me").each(function (){
+        var position = $(this).position();
+        $(this).data("position", position);
+        $(this).animate({left: position.left + Math.random()*50, top: position.top + Math.random()*50, opacity: Math.random()}, {easing: "swing", queue: true, duration: 2000});
+        $(this).animate({left: position.left - Math.random()*50, top: position.top - Math.random()*50, opacity: Math.random()}, {easing: "swing", queue: true, duration: 2000});
+      });
+      window.setTimeout(clarinetMove, 2000);
+    };
+
+
+
+
+
+
 
     //bass
       $("#bass").children(".filledBubble").click(function() {
         if (!$("#bass").hasClass("selected")) {
           $(this).animate({opacity: "1"}, {easing: "swing", queue: false, duration: 100});
           $("#bass").addClass("selected");
-          $("#bass").append(bass);
-          bassAudio.pause();
+          $("#bassVisual").show();
+          bassAudio.muted = false;
         }
         else {
           $(this).animate({opacity: "0"}, {easing: "swing", queue: false, duration: 100});
           $("#bass").removeClass("selected");
-          $("#bass").remove(bass);
+          $("#bassVisual").hide();
+          bassAudio.muted = true;
         };
       });
     //end
@@ -38,14 +80,14 @@ $(document).ready(function(){
       if (!$("#vocals").hasClass("selected")) {
         $(this).animate({opacity: "1"}, {easing: "swing", queue: false, duration: 100});
         $("#vocals").addClass("selected");
-        $("#vocals").append(vocals);
-        var vocalsAudio = document.getElementById("vocalsAudio");
-        vocalsAudio.pause();
+        $("#vocalsVisual").show();
+        vocalsAudio.muted = false;
       }
       else {
         $(this).animate({opacity: "0"}, {easing: "swing", queue: false, duration: 100});
         $("#vocals").removeClass("selected");
-        $("#vocals").remove(vocals);
+        $("#vocalsVisual").hide();
+        vocalsAudio.muted = true;
       };
     });
     //end
@@ -56,14 +98,14 @@ $(document).ready(function(){
       if (!$("#drums").hasClass("selected")) {
         $(this).animate({opacity: "1"}, {easing: "swing", queue: false, duration: 100});
         $("#drums").addClass("selected");
-        $("#drums").append(drums);
-        var drumsAudio = document.getElementById("drumsAudio");
-        drumsAudio.pause();
+        $("#drumsVisual").show();
+        drumsAudio.muted = false;
       }
       else {
         $(this).animate({opacity: "0"}, {easing: "swing", queue: false, duration: 100});
         $("#drums").removeClass("selected")
-        $("#drums").remove(drums);
+        $("#drumsVisual").hide();
+        drumsAudio.muted = true;
       };
     });
     //end
@@ -74,30 +116,23 @@ $(document).ready(function(){
       if (!$("#clarinet").hasClass("selected")) {
         $(this).animate({opacity: "1"}, {easing: "swing", queue: false, duration: 100});
         $("#clarinet").addClass("selected");
-        $("#clarinet").append(clarinet);
-        var clarinetAudio = document.getElementById("clarinetAudio");
-        clarinetAudio.pause();
+        $("#clarinetVisual").show();
+        clarinetAudio.muted = false;
+        clarinetMove();
       }
       else {
         $(this).animate({opacity: "0"}, {easing: "swing", queue: false, duration: 100});
         $("#clarinet").removeClass("selected");
-        $("#clarinet").remove(clarinet);
+        $("#clarinetVisual").hide();
+        clarinetAudio.muted = true;
       };
     });
     //end
 
-    var audio = document.getElementsByTagName("AUDIO")[0, 1, 2, 3];
+    var audio = document.getElementsByTagName("AUDIO");
 
 
 
-    $(".playButton").click(function() {
-      bassAudio.play();
-      vocalsAudio.play();
-      drumsAudio.play();
-      clarinetAudio.play();
-      // $(".playButton").hide();
-      // $(".resetButton").show();
-    });
 
 
 });

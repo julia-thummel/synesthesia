@@ -257,16 +257,16 @@ $(".one").click(function(){
 
 
 //arrays for letter color
-var zero = "#fff06a";
-var one = "#e55b1b";
-var two = "#7c6b62";
-var three = "#93528a";
-var four = "#fff06a";
-var five = "#fff06a";
-var six = "#fff06a";
-var seven = "#fff06a";
-var eight = "#fff06a";
-var nine = "#fff06a";
+var zero = "#16228c";
+var one = "#068fce";
+var two = "#e81919";
+var three = "#139655";
+var four = "#b7902d";
+var five = "#d132be";
+var six = "#ede92d";
+var seven = "#f79c13";
+var eight = "#0079b2";
+var nine = "#184f18";
 var a = "#f7c213";
 var b = "#e21102";
 var c = "#039301";
@@ -317,6 +317,14 @@ var colors = [
 //end
 
 
+jQuery.fn.extend({
+    backgroundAnimate: function () {
+      $(this).css({"opacity": "1"});
+      $(this).animate({opacity: 0}, {easing: "swing", queue: true, duration: 500});
+    }
+});
+
+
 //letters show up on keypress
 window.onkeydown = function(event) {
   for (i=0; i < keyNum.length; i++) {
@@ -337,6 +345,8 @@ window.onkeydown = function(event) {
     var grapheme = $("<h1 class='g p activeLetter'></h1>").text(name);
     $("#interaction1").append(grapheme);
     $(".activeLetter").css({"color": color});
+    $("#background").css({"background-color": color});
+    $("#background").backgroundAnimate();
     $(".backgroundLetter").css({"color": "white", "opacity": ".5"});
   };
 };
@@ -359,59 +369,6 @@ move();
 
 
 
-
-//audio
-
-  //get mouse position
-  $( document ).on( "mousemove", function( event ) {
-    var mouseX = event.pageX;
-  });
-  //end
-
-
-  // var left = document.getElementById("left");
-  // var right = document.getElementById("right");
-
-
-    // play on continue
-    function playLeft(){
-       left.play();
-    }
-
-    function playRight(){
-       right.play();
-    }
-
-    $(".continue").click(function(){
-      playLeft();
-      playRight();
-    });
-
-    $(".back, .one").click(function(){
-      left.pause();
-      right.pause();
-    });
-    //end
-
-
-
-    //volume based on mouse position
-
-    $(document).mousemove(function(){
-      // var mouseX = event.pageX;
-      var width = $(window).width()
-      var vol = ((mouseX * 2) / width)
-      var left = document.getElementById("left");
-      var right = document.getElementById("right");
-      left.volume = 1-vol;
-      right.volume = vol;
-      // console.log(left.volume);
-      // console.log(right.volume);
-      // console.log(vol);
-      // console.log(mouseX);
-      // console.log(width);
-    });
-    //end
 
 
 

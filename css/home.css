@@ -98,7 +98,7 @@
   height: 50%;
   position: absolute;
   display: block;
-  top: 55%;
+  top: 50%;
   left: 50%;
   z-index: 120;
 }
@@ -120,7 +120,7 @@
 .superTitle {
   position: absolute;
   left: 14%;
-  top: 15%;
+  top: 14%;
   width: auto;
   height: auto;
 }
@@ -128,7 +128,7 @@
 .bar {
   position: absolute;
   left: 14%;
-  top: 18%;
+  top: 17%;
   width: 72%;
   height: 1px;
   background-color: black;
@@ -154,6 +154,24 @@
   vertical-align: top;
 }
 
+.scrollArrow {
+  width: 3%;
+  height: 20%;
+  position: absolute;
+  left: 45%;
+  top: 80%;
+  color: white;
+  font-weight: 900;
+  text-align: left;
+}
+
+.downArrow {
+  position: fixed;
+  padding-left: 5px;
+  padding-top: 5px;
+  width: 2%;
+}
+
 
 
 
@@ -161,7 +179,7 @@
 
 .brain {
   position: absolute;
-  left: 10%;
+  left: 55%;
   top: 37%;
   width: 35%;
   height: auto;

@@ -121,7 +121,7 @@
   width: 8%;
   height: 4%;
   background-color: transparent;
-  position: fixed;
+  position: absolute;
   border: 1px solid white;
   border-radius: 30px;
   color: white;
@@ -129,6 +129,7 @@
   font-weight: 400;
   left: 5%;
   top: 10%;
+  z-index: 120;
 }
 
 .LArrow {

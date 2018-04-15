@@ -20,27 +20,6 @@ body {
   background-color: blue;
 }
 
-.playButton {
-  width: 10%;
-  height: auto;
-  position: absolute;
-  top: 37%;
-  left: 45%;
-  background-color: transparent;
-  border: none;
-}
-
-.playButtonInstr {
-  width: 35%;
-  height: auto;
-  position: absolute;
-  left: 40%;
-  top: 55%;
-  line-height: 1.7;
-  color: white;
-  z-index: 110;
-}
-
 .soundMenu {
   width: 20%;
   height: 85%;
@@ -80,49 +59,243 @@ body {
 }
 
 
-.aniClarinet {
-  animation-name: clarinet;
-  animation-duration: 30s;
+
+
+
+
+/* bass animation */
+.bassGlowOne {
+  width: 500px;
+  height: 500px;
+  border-radius: 500px;
+  border: none;
+  background-color: #752d2d;
+  position: absolute;
+  opacity: .5;
+  filter: blur(10px);
+  left: 5%;
+  top: 27%;
+  animation-name: bassOne;
+  animation-duration: 1.8s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.bassGlowTwo {
+  width: 500px;
+  height: 500px;
+  border-radius: 500px;
+  border: none;
+  background-color: #752d2d;
+  position: absolute;
+  opacity: .5;
+  filter: blur(10px);
+  left: 50%;
+  top: 27%;
+  animation-name: bassTwo;
+  animation-duration: 1.8s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-delay: .9s;
+}
+
+@keyframes bassOne {
+    0%   {opacity: 0; transform: scale(2);}
+    25%  {opacity: .2; transform: scale(2);}
+    50%  {opacity: 1; transform: scale(2.25);}
+    75%  {opacity: .7; transform: scale(2.4);}
+    100% {opacity: 0; transform: scale(2.5);}
+}
+
+@keyframes bassTwo {
+    0%   {opacity: 0; transform: scale(2);}
+    25%  {opacity: .2; transform: scale(2);}
+    50%  {opacity: 1; transform: scale(2.25);}
+    75%  {opacity: .7; transform: scale(2.4);}
+    100% {opacity: 0; transform: scale(2.5);}
+}
+
+
+
+
+
+
+/* drum animation */
+#drumsVisual {
+  z-index: 120;
+}
+
+.drumLine {
+  width: 50%;
+  height: 5px;
+  background-color: #c6c6c6;
+  border-radius: 20px;
+  position: absolute;
+  left: 25%;
+  top: 55%;
+  animation-name: drumLine;
+  animation-duration: .87s;
   animation-timing-function: ease;
+  animation-iteration-count: infinite;
 }
 
-@keyframes clarinet {
-    0%   {top: -100%; z-index: 109;}
-    100% {top: 100%; z-index: 109;}
-}
-
-.aniBass {
-  animation-name: bass;
-  animation-duration: 30s;
+.drumCircle {
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
+  border: 1px solid white;
+  background-color: transparent;
+  position: absolute;
+  left: 50%;
+  top: 47%;
+  animation-name: drumCircle;
+  animation-duration: .87s;
   animation-timing-function: ease;
+  animation-iteration-count: infinite;
 }
 
-@keyframes bass {
-    0%   {top: -100%; z-index: 109;}
-    100% {top: 100%; z-index: 109;}
-}
-
-.aniDrums {
-  animation-name: drums;
-  animation-duration: 30s;
+.drumGlow {
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
+  border: none;
+  background-color: white;
+  opacity: .5;
+  filter: blur(10px);
+  position: absolute;
+  left: 50%;
+  top: 47%;
+  animation-name: drumGlow;
+  animation-duration: .87s;
   animation-timing-function: ease;
+  animation-iteration-count: infinite;
 }
 
-@keyframes drums {
-    0%   {top: -100%; z-index: 109;}
-    100% {top: 100%; z-index: 109;}
+
+@keyframes drumLine {
+    0%   {width: 0%; opacity: 1;}
+    100% {width: 75%; opacity: 0;}
 }
 
-.aniVocals {
-  animation-name: vocals;
-  animation-duration: 30s;
+
+@keyframes drumCircle {
+    0%   {transform: scale(0); opacity: 1;}
+    100% {transform: scale(3); opacity: 0;}
+}
+
+
+@keyframes drumGlow {
+  0%   {transform: scale(0); opacity: 1;}
+  100% {transform: scale(2); opacity: 0;}
+}
+
+
+
+
+
+
+
+
+/* vocal animation */
+.voiceOne {
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
+  border: none;
+  background-color: #5295dd;
+  opacity: .5;
+  filter: blur(2px);
+  position: absolute;
+  left: 80%;
+  top: 90%;
+  animation-name: voiceOne;
+  animation-duration: 3s;
   animation-timing-function: ease;
+  animation-iteration-count: infinite;
 }
 
-@keyframes vocals {
-    0%   {top: -100%; z-index: 109;}
-    100% {top: 100%; z-index: 109;}
+.voiceTwo {
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
+  border: none;
+  background-color: #5295dd;
+  opacity: .5;
+  filter: blur(2px);
+  position: absolute;
+  left: 80%;
+  top: 90%;
+  animation-name: voiceOne;
+  animation-duration: 3s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+  animation-delay: .5s;
 }
+
+.voiceThree {
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
+  border: none;
+  background-color: #5295dd;
+  opacity: .5;
+  filter: blur(2px);
+  position: absolute;
+  left: 80%;
+  top: 90%;
+  animation-name: voiceOne;
+  animation-duration: 3s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+  animation-delay: 1s;
+}
+
+.voiceFour {
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
+  border: none;
+  background-color: #5295dd;
+  opacity: .5;
+  filter: blur(2px);
+  position: absolute;
+  left: 80%;
+  top: 90%;
+  animation-name: voiceOne;
+  animation-duration: 3s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+  animation-delay: 1.5s;
+}
+
+@keyframes voiceOne {
+    0%   {opacity: 1; transform: scale(0);}
+    100% {opacity: 0; transform: scale(8);}
+}
+
+
+
+
+
+.animate-me {
+  width: 70px;
+  height: 100px;
+  border-radius: 100%;
+  border: none;
+  background-color: #d69c4a;
+  opacity: .9;
+  filter: blur(2px);
+  position: absolute;
+  top: 95%;
+  transform: rotate(30deg);
+  /* animation-name: clarinetVisual;
+  animation-duration: 3s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+  animation-delay: 1.5s; */
+}
+
+
 
 
 /* drums
