@@ -129,12 +129,12 @@
 
 			var hex, color;
 			var group, textMesh0, textMesh1, textMesh2, textMesh3, textMesh4, textMesh5, textMesh6, textMesh7, textMesh8, textMesh9, textMesh10, textMesh11, textGeo0, textGeo1, textGeo2, textGeo3, textGeo4, textGeo5, textGeo6, textGeo7, textGeo8, textGeo9, textGeo10, textGeo11, materials;
-			var text = ["1:00", "2:00", "3:00", "4:00", "5:00", "6:00", "7:00", "8:00", "9:00", "10:00", "11:00", "12:00"],
+			var text = ["1:00am", "2:00pm", "3:00am", "4:00pm", "5:00am", "6:00pm", "7:00am", "8:00pm", "9:00am", "10:00pm", "11:00am", "12:00pm"],
 				height = 20,
 				size = 300,
 				hover = 30,
 				curveSegments = 4,
-				bevelThickness = 5,
+				bevelThickness = 10,
 				bevelSize = 3,
 				bevelSegments = 3,
 				bevelEnabled = true,
@@ -184,8 +184,8 @@
 
 				scene.add( new THREE.AmbientLight( 0x555555 ) );
 
-				var light = new THREE.SpotLight( 0xffffff, 1.5 );
-				light.position.set( 0, 500, 2000 );
+				var light = new THREE.SpotLight( 0xffffff, 50 );
+				light.position.set( 2000, 5000, 2000 );
 				scene.add( light );
 
 
@@ -385,7 +385,7 @@
 				textMesh0 = new THREE.Mesh( textGeo0, materials );
 				textMesh0.position.x = Math.random() * 10000 - 5000;
 				textMesh0.position.y = Math.random() * 6000 - 3000;
-				textMesh0.position.z = Math.random() * 4000 - 4000;
+				textMesh0.position.z = Math.random() * 4000 - 2000;
 				textMesh0.rotation.x = 0;
 				textMesh0.rotation.y = Math.PI * 2;
 				group.add( textMesh0 );
@@ -393,7 +393,7 @@
 				textMesh1 = new THREE.Mesh( textGeo1, materials );
 				textMesh1.position.x = Math.random() * 10000 - 5000;
 				textMesh1.position.y = Math.random() * 6000 - 3000;
-				textMesh1.position.z = Math.random() * 4000 - 4000;
+				textMesh1.position.z = Math.random() * 4000 - 2000;
 				textMesh1.rotation.x = 0;
 				textMesh1.rotation.y = Math.PI * 2;
 				group.add( textMesh1 );
@@ -401,7 +401,7 @@
 				textMesh2 = new THREE.Mesh( textGeo2, materials );
 				textMesh2.position.x = Math.random() * 10000 - 5000;
 				textMesh2.position.y = Math.random() * 6000 - 3000;
-				textMesh2.position.z = Math.random() * 4000 - 4000;
+				textMesh2.position.z = Math.random() * 4000 - 2000;
 				textMesh2.rotation.x = 0;
 				textMesh2.rotation.y = Math.PI * 2;
 				group.add( textMesh2 );
@@ -409,7 +409,7 @@
 				textMesh3 = new THREE.Mesh( textGeo3, materials );
 				textMesh3.position.x = Math.random() * 10000 - 5000;
 				textMesh3.position.y = Math.random() * 6000 - 3000;
-				textMesh3.position.z = Math.random() * 4000 - 4000;
+				textMesh3.position.z = Math.random() * 4000 - 2000;
 				textMesh3.rotation.x = 0;
 				textMesh3.rotation.y = Math.PI * 2;
 				group.add( textMesh3 );
@@ -417,7 +417,7 @@
 				textMesh4 = new THREE.Mesh( textGeo4, materials );
 				textMesh4.position.x = Math.random() * 10000 - 5000;
 				textMesh4.position.y = Math.random() * 6000 - 3000;
-				textMesh4.position.z = Math.random() * 4000 - 4000;
+				textMesh4.position.z = Math.random() * 4000 - 2000;
 				textMesh4.rotation.x = 0;
 				textMesh4.rotation.y = Math.PI * 2;
 				group.add( textMesh4 );
@@ -425,7 +425,7 @@
 				textMesh5 = new THREE.Mesh( textGeo5, materials );
 				textMesh5.position.x = Math.random() * 10000 - 5000;
 				textMesh5.position.y = Math.random() * 6000 - 3000;
-				textMesh5.position.z = Math.random() * 4000 - 4000;
+				textMesh5.position.z = Math.random() * 4000 - 2000;
 				textMesh5.rotation.x = 0;
 				textMesh5.rotation.y = Math.PI * 2;
 				group.add( textMesh5 );
@@ -433,7 +433,7 @@
 				textMesh6 = new THREE.Mesh( textGeo6, materials );
 				textMesh6.position.x = Math.random() * 10000 - 5000;
 				textMesh6.position.y = Math.random() * 6000 - 3000;
-				textMesh6.position.z = Math.random() * 4000 - 4000;
+				textMesh6.position.z = Math.random() * 4000 - 2000;
 				textMesh6.rotation.x = 0;
 				textMesh6.rotation.y = Math.PI * 2;
 				group.add( textMesh6 );
@@ -441,7 +441,7 @@
 				textMesh7 = new THREE.Mesh( textGeo7, materials );
 				textMesh7.position.x = Math.random() * 10000 - 5000;
 				textMesh7.position.y = Math.random() * 6000 - 3000;
-				textMesh7.position.z = Math.random() * 4000 - 4000;
+				textMesh7.position.z = Math.random() * 4000 - 2000;
 				textMesh7.rotation.x = 0;
 				textMesh7.rotation.y = Math.PI * 2;
 				group.add( textMesh7 );
@@ -449,7 +449,7 @@
 				textMesh8 = new THREE.Mesh( textGeo8, materials );
 				textMesh8.position.x = Math.random() * 10000 - 5000;
 				textMesh8.position.y = Math.random() * 6000 - 3000;
-				textMesh8.position.z = Math.random() * 4000 - 4000;
+				textMesh8.position.z = Math.random() * 4000 - 2000;
 				textMesh8.rotation.x = 0;
 				textMesh8.rotation.y = Math.PI * 2;
 				group.add( textMesh8 );
@@ -457,7 +457,7 @@
 				textMesh9 = new THREE.Mesh( textGeo9, materials );
 				textMesh9.position.x = Math.random() * 10000 - 5000;
 				textMesh9.position.y = Math.random() * 6000 - 3000;
-				textMesh9.position.z = Math.random() * 4000 - 4000;
+				textMesh9.position.z = Math.random() * 4000 - 2000;
 				textMesh9.rotation.x = 0;
 				textMesh9.rotation.y = Math.PI * 2;
 				group.add( textMesh9 );
@@ -465,7 +465,7 @@
 				textMesh10 = new THREE.Mesh( textGeo10, materials );
 				textMesh10.position.x = Math.random() * 10000 - 5000;
 				textMesh10.position.y = Math.random() * 6000 - 3000;
-				textMesh10.position.z = Math.random() * 4000 - 4000;
+				textMesh10.position.z = Math.random() * 4000 - 2000;
 				textMesh10.rotation.x = 0;
 				textMesh10.rotation.y = Math.PI * 2;
 				group.add( textMesh10 );
@@ -473,7 +473,7 @@
 				textMesh11 = new THREE.Mesh( textGeo11, materials );
 				textMesh11.position.x = Math.random() * 10000 - 5000;
 				textMesh11.position.y = Math.random() * 6000 - 3000;
-				textMesh11.position.z = Math.random() * 4000 - 4000;
+				textMesh11.position.z = Math.random() * 4000 - 2000;
 				textMesh11.rotation.x = 0;
 				textMesh11.rotation.y = Math.PI * 2;
 				group.add( textMesh11 );
