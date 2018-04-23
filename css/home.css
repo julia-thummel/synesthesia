@@ -134,32 +134,52 @@
   background-color: black;
 }
 
+.contentLeft {
+  position: absolute;
+  top: 40%;
+  left: 14%;
+  width: 70%;
+  height: 50%;
+  z-index: 120;
+}
+
 .containerSmall {
-  width: 100%;
+  display: inline-block;
+  width: 27%;
   height: auto;
   margin: 0;
 }
 
+.verticalBar {
+  position: absolute;
+  width: 2%;
+  height: auto;
+  left: 37%;
+  top: 40%;
+}
+
 .containerLarge {
-  margin-top: 10%;
-  width: 100%;
+  display: inline-block;
+  margin-left: 9.5%;
+  width: 50%;
   height: 30%;
+  vertical-align: top;
 }
 
 .text {
   display: inline-block;
-  width: 46%;
+  width: 100%;
   height: 100%;
-  margin: 0 3% 0 0;
+  margin: 0 0 4% 0;
   vertical-align: top;
 }
 
 .scrollArrow {
-  width: 3%;
+  width: 1%;
   height: 20%;
   position: absolute;
-  left: 45%;
-  top: 80%;
+  left: 47%;
+  top: 82%;
   color: white;
   font-weight: 900;
   text-align: left;
@@ -177,39 +197,28 @@
 
 /* section 2 */
 
-.brain {
+/* .brain {
   position: absolute;
   left: 55%;
   top: 37%;
   width: 35%;
   height: auto;
   mix-blend-mode: multiply;
-}
-
-/* .ball1 {
-  position: absolute;
-  left: 30%;
-  top: 65%;
-  width: 70px;
-  height: 70px;
-  background-color: white;
-  border-radius: 100%;
-  opacity: .5;
 } */
 
-.contentRight {
+/* .contentRight {
   position: absolute;
   top: 40%;
   left: 50%;
   width: 38%;
   height: 50%;
   z-index: 120;
-}
+} */
 
 
 /* section 3 */
 
-.lightbulb {
+/* .lightbulb {
   position: absolute;
   left: 60%;
   top: 30%;
@@ -217,16 +226,8 @@
   height: auto;
   mix-blend-mode: multiply;
   transform: rotate(180deg);
-}
+} */
 
-.contentLeft {
-  position: absolute;
-  top: 40%;
-  left: 14%;
-  width: 38%;
-  height: 50%;
-  z-index: 120;
-}
 
 
 
@@ -235,43 +236,27 @@
 /* section 4 */
 
 .section4Buttons{
-  width: 30%;
-  height: 50%;
+  width: 60%;
+  height: 30%;
   position: absolute;
-  top: 40%;
-  left: 60%;
-  z-index: 100;
+  top: 60%;
+  left: 40%;
+  z-index: 150;
 }
 
 .button {
-  width: 30%;
-  height: 10%;
+  width: 15%;
+  height: 16%;
   background-color: transparent;
   border: 2px solid white;
   border-radius: 30px;
   color: white;
   text-transform: uppercase;
   font-weight: 400;
-  z-index: 120;
   display: inline-block;
-  margin: 0 10% 10% 0;
+  margin: 0 4% 0 0;
 }
 
-.sight {
-
-}
-
-.sound {
-  left:
-}
-
-.space {
-
-}
-
-.touch {
-
-}
 
 /* #S:hover {
   color: red;

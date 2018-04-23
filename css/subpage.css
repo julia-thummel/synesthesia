@@ -82,7 +82,7 @@
 
 .continue {
   left: 26%;
-  top: 73%;
+  top: 76%;
   width: auto;
   height: auto;
   position: fixed;
@@ -91,6 +91,7 @@
   background-color: transparent;
   color: white;
   text-transform: uppercase;
+  padding: 0;
   font-size: 10pt;
   z-index: 120;
 }
@@ -101,8 +102,8 @@
 
 .continueIcon {
   position: fixed;
-  left: 28%;
-  top: 76%;
+  left: 27%;
+  top: 78%;
   width: 1.5%;
   height: auto;
 }

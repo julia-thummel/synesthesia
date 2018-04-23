@@ -1,0 +1,81 @@
+body {
+  width: auto;
+  height: 100%;
+  margin: 0;
+  background-color: white;
+}
+
+h1 {
+  font-size: 65pt;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+h2 { /* home pages after initial */
+  font-size: 40pt;
+  margin: 0;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+h3 { /* page titles */
+  margin: 0;
+  font-size: 12pt;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+h4 { /* section titles */
+  margin: 0;
+  display: inline-block;
+  font-size: 8pt;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+h5 { /* home page intro */
+  font-size: 16pt;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+}
+
+p {
+  font-size: 10pt;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+
+ul {
+  vertical-align: text-top;
+  list-style: disc inside;
+}
+
+li {
+  vertical-align: text-top;
+  list-style: disc inside;
+}
+
+.week {
+  width: 100%;
+  height: auto;
+  margin: 50px 0 0 50px;
+  display: inline-block;
+}
+
+.text {
+  width: 38%;
+  height: auto;
+  display: inline-block;
+}
+
+.images {
+  width: 48%;
+  height: auto;
+  display: inline-block;
+  vertical-align: top;
+  margin: 20px 0 0 40px;
+}
+
+.pic {
+  display: inline-block;
+}
